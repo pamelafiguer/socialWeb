@@ -1,0 +1,126 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f4fa;
+  }
+  
+  .container {
+    display: flex;
+    width: 80%;
+    max-width: 1000px;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+  }
+  
+  .form-container, .info-container {
+    flex: 1;
+    padding: 40px;
+  }
+  
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    font-size: 14px;
+    color: #333;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .register-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #6c63ff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .register-btn:hover {
+    background-color: #5851db;
+  }
+  
+  .or {
+    text-align: center;
+    color: #999;
+    margin: 20px 0;
+  }
+  
+  .social-login {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .social-btn {
+    flex: 1;
+    padding: 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+  }
+  
+  .google {
+    background-color: #de5246;
+  }
+  
+  .facebook {
+    background-color: #3b5998;
+  }
+  
+  .info-container {
+    background: #6c63ff;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+  
+  .info-container p {
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  
