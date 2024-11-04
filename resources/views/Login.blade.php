@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">  
 </head>
 <body>
+<div class="background-image"></div>
   <div class="login-container">
     <h1>LOGIN</h1>
     <p>How do I get started lorem ipsum dolor at?</p>
@@ -38,7 +39,7 @@
     </a>
   </div>
 
-  <div class="welcome-container">
+  <div class="info-container">
       <div class="welcome-message">
         <p>Very good works are waiting for you Login Now!!!</p>
         <img src="https://via.placeholder.com/300x400" alt="Welcome Image">
