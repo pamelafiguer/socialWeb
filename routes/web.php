@@ -9,6 +9,9 @@ Route::controller(redsocialController::class) ->group(function() {
 
     Route::get('/Register', 'Register')->name('Register');
     Route::post('/Register', 'Register')->name('Register');
+    
+    Route::get('/feed', 'feed')->name('feed');
+    
 
     Route::get('/recuperarPassword', 'showRecoverForm')->name('recuperarPassword');
     Route::post('/recuperarPassword', 'recover')->name('procesar_recuperacion');
