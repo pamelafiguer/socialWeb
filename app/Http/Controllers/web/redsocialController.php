@@ -16,4 +16,8 @@ class redsocialController extends Controller
     public function Usuario() {
         return view('Usuario');
     }
+    public function feed()
+    {
+        return view('feed'); 
+    }
 }

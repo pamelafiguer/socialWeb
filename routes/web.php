@@ -9,6 +9,9 @@ Route::controller(redsocialController::class) ->group(function() {
 
     Route::get('/Register', 'Register')->name('Register');
     Route::post('/Register', 'Register')->name('Register');
+    
+    Route::get('/feed', 'feed')->name('feed');
+    
 
     Route::get('/Usuario', 'Usuario') ->name('Usuario');
     Route::post('/Usuario', 'Usuario')->name('Usuario');
