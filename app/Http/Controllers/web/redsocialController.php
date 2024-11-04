@@ -13,4 +13,7 @@ class redsocialController extends Controller
     public function Register() {
         return view('Register');
     }
+    public function Usuario() {
+        return view('Usuario');
+    }
 }

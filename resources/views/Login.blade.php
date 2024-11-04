@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">  
 </head>
 <body>
   <div class="login-container">
@@ -17,7 +18,9 @@
     </div>
 
     <div class="input-group">
-      <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 24 24"><path d="M12 17c1.66 0 3-1.34 3-3v-2c0-1.66-1.34-3-3-3s-3 1.34-3 3v2c0 1.66 1.34 3 3 3zm6-3v2c0 3.31-2.69 6-6 6s-6-2.69-6-6v-2c0-3.31 2.69-6 6-6s6 2.69 6 6z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 24 24">
+    <path d="M12 2a5 5 0 00-5 5v3H6c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2h-1V7a5 5 0 00-5-5zm0 2a3 3 0 013 3v3H9V7a3 3 0 013-3zm-1 10h2v4h-2v-4z"/>
+    </svg>
       <input type="password" placeholder="Password">
     </div>
 
@@ -26,7 +29,7 @@
     <p class="social-login">Login with Others</p>
     
     <a href="#" class="social-btn google">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" alt="Google Logo">
+    <i class="fab fa-google"></i>
       Login with Google
     </a>
     <a href="#" class="social-btn facebook">
@@ -34,5 +37,11 @@
       Login with Facebook
     </a>
   </div>
+
+  <div class="welcome-container">
+      <div class="welcome-message">
+        <p>Very good works are waiting for you Login Now!!!</p>
+        <img src="https://via.placeholder.com/300x400" alt="Welcome Image">
+      </div>
 </body>
 </html>
