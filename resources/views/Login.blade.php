@@ -41,7 +41,7 @@
   <div class="welcome-container">
       <div class="welcome-message">
         <p>Very good works are waiting for you Login Now!!!</p>
-        <img src="https://via.placeholder.com/300x400" alt="Welcome Image">
-      </div>
+        <img src="" alt="Welcome Image">
+    </div>
 </body>
 </html>
