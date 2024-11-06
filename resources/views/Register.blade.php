@@ -12,22 +12,25 @@
 </head>
 
 <body>
-
+    <div class="background-image"></div>
     <div class="container">
 
     <div class="form-container">
             <h2>REGISTER</h2>
             <p>Sign up to get started with our services</p>
-        <form action="#" method="POST">
+        <form action="{{ route('RegisterForm') }}" method="POST">
+
+                @csrf
+            
             
                 <div class="input-group">
-                    <label for="name">Nombres:
-                        <input type="text" name="Nombres" style="width: 180%;">
+                    <label for="name" style="vertical-align: inherit;font-size: small;">Nombres: 
+                        <input type="text" name="Nombres" id="name" style="width: 160%;">
                     </label>
                 </div>
                 <div class="input-group">
-                    <label for="firstname">Apellidos:
-                        <input type="text" name="Apellidos" style="width: 180%;">
+                    <label for="firstname" style="vertical-align: inherit;font-size: small;">Apellidos:
+                        <input type="text" name="Apellidos" id="lastname" style="width: 160%;">
                     </label>
                 </div>
 
@@ -59,7 +62,7 @@
                     
                     <label for="Year">Año:
                         
-                        <select class="custom-select-3"  name="bithday_year" id="year" style="width: 140%;">
+                        <select class="custom-select-3"  name="bithday_year" id="year" style="width: 120%;">
                             <?php
         
                                 for ($year = 2024; $year >= 1905; $year--) {
@@ -71,7 +74,7 @@
                     
                 </div>
                 <div class="input-group">Género:
-                    <div class="generos" style="margin-left: 80px;">
+                    <div class="generos" style="margin-left: 30px;">
                         <label for="genero">Mujer
                             <input type="radio" name="sex" id="sex" style="margin: 10px;">
                         </label>
@@ -86,12 +89,12 @@
                 </div>
                 <div class="input-group">
                     <label for="email">
-                        <input type="email" name="email" placeholder="Ingresa tu correo" style="width: 250%;">
+                        <input type="email" name="email" id="correo" placeholder="Ingresa tu correo" style="width: 220%;">
                     </label>
                 </div>
                 <div class="input-group">
                     <label for="password">
-                        <input type="password" name="password" placeholder="Contraseña Nueva" style="width: 250%;">
+                        <input type="password" name="password" id="password" placeholder="Contraseña Nueva" style="width: 220%;">
                     </label>
                 </div>
                 <div class="input-group">
@@ -102,8 +105,9 @@
                         <br>
                         
 
-                    <a href="#">¿Ya tienes una cuenta? </a>
+                    <a href="/">¿Ya tienes una cuenta? </a>
                 </div>
+            
                 
             </div>
             <div class="info-container">

@@ -13,6 +13,7 @@
     background-color: #f0f4fa;
   }
   
+
   .container {
     display: flex;
     width: 80%;
@@ -32,6 +33,15 @@
     flex-direction: column;
     justify-content: center;
   }
+  .navbar-center .nav-icon {
+    color: #606770;
+    text-decoration: none;
+}
+.navbar-right .nav-icon {
+  font-size: 20px;
+  color: #606770;
+  text-decoration: none;
+}
   
   h2 {
     font-size: 24px;
@@ -51,6 +61,11 @@
     font-size: 14px;
     color: #333;
   }
+
+  i:hover {
+    color: #1f1b1b;
+    font-size: 18px;
+}
   
   input[type="text"],
   input[type="email"],
@@ -109,18 +124,41 @@
   }
   
   .info-container {
-    background: #6c63ff;
-    color: #fff;
+    background: linear-gradient(270deg, #6132ee, #4d09ec);
+    color: white;
+    padding: 13.3rem;
+    flex: 0.4;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    border-radius: unset;
   }
   
   .info-container p {
     font-size: 18px;
     line-height: 1.5;
   }
-  
+  .login-container {
+    width: 387.8px;
+    padding: 32px;
+    background-color: #cdcbc3f2;
+    /* border-radius: 20px; */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.719);
+    text-align: center;
+}
+.main-feed {
+  padding: 30px;
+  width: 58%;
+}
+.h5, h5 {
+  font-size: 1rem;
+}
+.list-unstyled {
+  padding-left: 0;
+  list-style: none;
+  font-size: smaller;
+}

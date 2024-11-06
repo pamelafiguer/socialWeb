@@ -18,7 +18,7 @@
             <input type="text" class="form-control" placeholder="Añadir post">
             <div class="d-flex mt-2">
                 <button class="btn btn-light m-2">Photo</button>
-                <button class="btn btn-light">Video</button>
+                <button class="btn btn-light" style="margin-left: 15px;">Video</button>
             </div>
         </div>
     </div>

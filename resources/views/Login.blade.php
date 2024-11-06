@@ -31,18 +31,20 @@
     
     <a href="#" class="social-btn google">
     <i class="fab fa-google"></i>
-      Login with Google
+      Ingresa con Google
     </a>
     <a href="#" class="social-btn facebook">
       <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo">
-      Login with Facebook
+      Ingresa con Facebook
     </a>
+
+    <a href="/Register">Si no tienes una cuenta Registrate aqui!</a>
   </div>
 
   <div class="info-container">
       <div class="welcome-message">
         <p>Very good works are waiting for you Login Now!!!</p>
-        <img src="" alt="Welcome Image">
+        <img src="imgen/neon.jpg" alt="Welcome Image">
     </div>
 </body>
 </html>

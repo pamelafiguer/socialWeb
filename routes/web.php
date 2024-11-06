@@ -8,7 +8,7 @@ Route::controller(redsocialController::class) ->group(function() {
     Route::post('/', 'Login')->name('Login');
 
     Route::get('/Register', 'Register')->name('Register');
-    Route::post('/Register', 'Register')->name('Register');
+    Route::post('/Register', 'RegisterForm')->name('RegisterForm');
     
     Route::get('/feed', 'feed')->name('feed');
     
@@ -26,6 +26,6 @@ Route::controller(redsocialController::class) ->group(function() {
 
     Route::post('/logout', 'logout')-> name('logout');
     
-    Route::get('/verificar', 'showMesaggeVerificar')-> name('verificar');
+    
 
 });
