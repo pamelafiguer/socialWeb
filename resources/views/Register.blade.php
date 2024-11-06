@@ -112,6 +112,8 @@
             </div>
             <div class="info-container">
                 <p>Join us and start exploring new opportunities!<br>Sign up now to begin your journey!</p>
+                <img src="/css/imgen/Grupoparque.jpeg" alt="Welcome Image">
+        </div>
             </div>
         
         

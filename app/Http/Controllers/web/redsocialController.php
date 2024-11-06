@@ -13,6 +13,25 @@ class redsocialController extends Controller
     public function Login() {
         return view('Login');
     }
+
+    public function LoginForm(Request $request) {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        $correo = $request->input('email');
+        $password = $request->input('password');
+
+        $usuario = DB::select('call Usuario_Login(?,?)', [$correo, $password]) ;
+
+        if ($usuario && $correo === $usuario[0]->email && $password === $usuario[0]->passwordd) {
+            
+            session(['usuario' => $usuario[0]->id_usuario]);
+            return redirect('/feed')->with('success', 'Ingreso exitoso');
+            
+        }
+    }
     public function Register() {
         return view('Register');
     }

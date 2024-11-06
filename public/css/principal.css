@@ -8,17 +8,21 @@ body {
 /* Estilos para la barra de navegación */
 .navbar {
     background-color: #fff;
-    padding: 10px 20px;
+    padding: 8px 15px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-left: -20px;
+    width: 102%;
 }
 .navbar input[type="text"] {
     border-radius: 20px;
     border: 1px solid #ddd;
     padding: 5px 15px;
-    margin-left: 10px;
+    margin-left: 65px;
+    font-size: small;
+    width: 80%;
 }
 .navbar .nav-icon {
     color: #606770;
@@ -106,6 +110,7 @@ body {
     padding: 0 35px;
     transition: color 0.3s;
 }
+
 
 
 

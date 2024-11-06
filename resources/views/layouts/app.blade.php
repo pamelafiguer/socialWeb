@@ -40,7 +40,6 @@
                     <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-video"></i> Videos</a></li>
                     <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-calendar-alt"></i> Eventos</a></li>
                     <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-bookmark"></i> Guardado</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-gamepad"></i> Gaming</a></li>
                     <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-star"></i> Favoritos</a></li>
                     <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-clock"></i> Recuerdos</a></li>
                     <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-question-circle"></i> Ayuda y Soporte</a></li>
@@ -58,7 +57,7 @@
                     <div class="card-body">
                         <h6>Grupos</h6>
                         <p>Ahora puedes encontrar y comunicarte con tu comunidad</p>
-                        <button class="btn btn-primary" style="margin-top: 20px;"> Encuntra tus grupos </button>
+                        <button class="btn btn-primary"> Encuntra tus grupos </button>
                     </div>
                 </div>
                 <h5>Contactos</h5>

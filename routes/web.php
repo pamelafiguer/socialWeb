@@ -5,7 +5,7 @@ use App\Http\Controllers\Web\redsocialController;
 
 Route::controller(redsocialController::class) ->group(function() {
     Route::get('/', 'Login')->name('Login');
-    Route::post('/', 'Login')->name('Login');
+    Route::post('/', 'LoginForm')->name('LoginForm');
 
     Route::get('/Register', 'Register')->name('Register');
     Route::post('/Register', 'RegisterForm')->name('RegisterForm');
