@@ -9,7 +9,7 @@ body {
 .navbar {
     background-color: #fff;
     padding: 8px 15px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 12px rgb(0 0 0 / 6%);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -70,11 +70,24 @@ body {
 .main-feed {
     background-color: #fff;
     padding: 20px;
-    margin-top: 20px;
+    /* margin-top: 20px; */
     margin-left: 25px;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
     font-size: small;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding-right: 10px;/* Espacio para la barra de desplazamiento */
+
+}
+
+.main-feed::-webkit-scrollbar {
+    display: none; /* Oculta la barra de desplazamiento */
+}
+
+/* Para Firefox */
+.main-feed {
+    scrollbar-width: none; /* Oculta la barra de desplazamiento */
 }
 
 /* Estilos para el right-sidebar */
