@@ -2,9 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\redsocialController;
+use Illuminate\Support\Facades\Auth;
+
 
 Route::controller(redsocialController::class) ->group(function() {
-    Route::get('/', 'Login')->name('Login');
+    Route::get('/', 'Login')->name('login');
     Route::post('/', 'LoginForm')->name('LoginForm');
 
     Route::get('/Register', 'Register')->name('Register');
@@ -26,10 +28,14 @@ Route::controller(redsocialController::class) ->group(function() {
     Route::get('/cambiarPassword', 'showChangePasswordForm')->name('cambiar_password');
     Route::post('/cambiarPassword', 'changePassword')->name('actualizar_password');
 
-    Route::get('/bienvenido', 'bienvenido')-> name('ingreso');
+
 
     Route::post('/logout', 'logout')-> name('logout');
     
     
+    
 
 });
+Route::get('/notifications', function () {
+    return  Auth::user()->unreadNotifications;
+})->middleware('auth')->name('notifications');

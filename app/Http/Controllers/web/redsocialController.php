@@ -9,6 +9,7 @@ use Illuminate\Support\Carbon;
 use App\Models\User;
 use App\Events\NewFriendRequest;
 use App\Notifications\FriendRequestNotification;
+use Illuminate\Support\Facades\Auth;
 
 
 class redsocialController extends Controller
@@ -16,7 +17,7 @@ class redsocialController extends Controller
 
     
     public function Login() {
-        return view('Login');
+        return view('login');
     }
 
     public function Amigos() {
@@ -25,6 +26,28 @@ class redsocialController extends Controller
 
     public function videos() {
         return view('videos');
+    }
+
+    public function sendFriendRequest($userId)
+    {
+        $sender = Auth::user();  
+        $receiver = User::findOrFail($userId);
+    
+        
+        $result = DB::select('CALL SendFriendRequest(?, ?)', [$sender->id, $receiver->id]);
+    
+        
+        $message = $result[0]->message;
+    
+        if ($message === 'Ya has enviado una solicitud de amistad a este usuario') {
+            return response()->json(['message' => $message], 400);
+        }
+    
+
+        event(new NewFriendRequest($sender, $receiver));
+        $receiver->notify(new FriendRequestNotification($sender));
+    
+        return response()->json(['message' => $message]);
     }
 
     public function LoginForm(Request $request) {

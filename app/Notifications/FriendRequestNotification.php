@@ -37,4 +37,10 @@ class FriendRequestNotification extends Notification
             'message' => $this->sender->name . ' te ha enviado una solicitud de amistad.'
         ]);
     }
+    public function toArray($notifiable)
+{
+    return [
+        'message' => "{$this->sender->name} te ha enviado una solicitud de amistad",
+    ];
+}
 }

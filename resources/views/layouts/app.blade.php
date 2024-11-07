@@ -99,7 +99,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <ul class="list-group">
+                        <ul class="list-group" id="notificationList">
                             <!-- Notificaciones cargadas dinámicamente -->
                             <li class="list-group-item">Tu amigo ha comentado tu publicación</li>
                             <li class="list-group-item">Tienes una nueva solicitud de amistad</li>
@@ -113,3 +113,39 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </html>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Selecciona el botón y el contador de notificaciones
+        const notificationButton = document.querySelector('[data-bs-target="#notificationsModal"]');
+        const notificationList = document.getElementById('notificationList');
+        const notificationCount = document.getElementById('notificationCount');
+
+        // Función para cargar las notificaciones
+        async function loadNotifications() {
+            try {
+                const response = await fetch("{{ route('notifications') }}");
+                const notifications = await response.json();
+                
+                // Limpiar la lista
+                notificationList.innerHTML = '';
+
+                // Actualizar el contador
+                notificationCount.textContent = notifications.length;
+
+                // Agregar notificaciones a la lista
+                notifications.forEach(notification => {
+                    const li = document.createElement('li');
+                    li.className = 'list-group-item';
+                    li.textContent = notification.data.message || 'Tienes una nueva notificación';
+                    notificationList.appendChild(li);
+                });
+            } catch (error) {
+                console.error('Error al cargar las notificaciones:', error);
+            }
+        }
+
+        // Cargar notificaciones cuando se abre el modal
+        notificationButton.addEventListener('click', loadNotifications);
+    });
+</script>
