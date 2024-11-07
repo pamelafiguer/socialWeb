@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.appi')
 
-@section('title', 'Home Feed')
+@section('title', 'friend Feed')
 
-@section('content')
+@section('contenido')
     <!-- Sección de historias -->
     <div class="d-flex justify-content-between mb-3 align-items-center">
         <h5><i class="fas fa-book-open me-2"></i>Historias</h5>

@@ -14,6 +14,14 @@ class redsocialController extends Controller
         return view('Login');
     }
 
+    public function Amigos() {
+        return view('Amigos');
+    }
+
+    public function videos() {
+        return view('videos');
+    }
+
     public function LoginForm(Request $request) {
         $request->validate([
             'email' => 'required|email',
@@ -27,7 +35,10 @@ class redsocialController extends Controller
 
         if ($usuario && $correo === $usuario[0]->email && $password === $usuario[0]->passwordd) {
             
-            session(['usuario' => $usuario[0]->id_usuario]);
+            session([
+                'usuario' => $usuario[0]->id_usuario,
+                'usuario_nombre' => $usuario[0]->nombre]);
+                
             return redirect('/feed')->with('success', 'Ingreso exitoso');
             
         }

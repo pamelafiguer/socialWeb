@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@yield('title', 'Social App' )</title>
+    <title>@yield('title', 'App' )</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/principal.css">
+    <link rel="stylesheet" href="css/amigos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 </head>
 
@@ -49,42 +49,9 @@
             </div>
 
             <div class="col-md-6 main-feed">
-                @yield('content')
+                @yield('contenido')
             </div>
 
-            <div class="col-md-4 right-sidebar">
-                <h5>Sugerencias</h5>
-                <div class="card mb-3" style="width: 100%;height: 28%;">
-                    <div class="card-body">
-                        <h6>Grupos</h6>
-                        <p>Ahora puedes encontrar y comunicarte con tu comunidad</p>
-                        <button class="btn btn-primary"> Encuntra tus grupos </button>
-                    </div>
-                </div>
-                <h5>Contactos</h5>
-                <ul class="list-unstyled">
-                    <li class="contact-item d-flex align-items-center mb-2">
-                        <img src="https://via.placeholder.com/40" class="rounded-circle me-2" alt="Dennis Han">
-                        <span>Dennis Han</span>
-                    </li>
-                    <li class="contact-item d-flex align-items-center mb-2">
-                        <img src="https://via.placeholder.com/40" class="rounded-circle me-2" alt="Eric Jones">
-                        <span>Eric Jones</span>
-                    </li>
-                    <li class="contact-item d-flex align-items-center mb-2">
-                        <img src="https://via.placeholder.com/40" class="rounded-circle me-2" alt="Cynthia Lopez">
-                        <span>Cynthia Lopez</span>
-                    </li>
-                    <li class="contact-item d-flex align-items-center mb-2">
-                        <img src="https://via.placeholder.com/40" class="rounded-circle me-2" alt="Anna Becklund">
-                        <span>Anna Becklund</span>
-                    </li>
-                    <li class="contact-item d-flex align-items-center mb-2">
-                        <img src="https://via.placeholder.com/40" class="rounded-circle me-2" alt="Aiden Brown">
-                        <span>Aiden Brown</span>
-                    </li>
-                </ul>
-            </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

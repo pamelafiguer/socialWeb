@@ -14,7 +14,11 @@ Route::controller(redsocialController::class) ->group(function() {
     
 
     Route::get('/Usuario', 'Usuario') ->name('Usuario');
-    Route::post('/Usuario', 'Usuario')->name('Usuario');
+    Route::post('/Usuario', 'UsuarioForm')->name('UsuarioForm');
+
+    Route::get('/amigos', 'Amigos') ->name('Amigos');
+    Route::get('/videos', 'videos') ->name('videos');
+    
 
     Route::get('/recuperarPassword', 'showRecoverForm')->name('recuperarPassword');
     Route::post('/recuperarPassword', 'recover')->name('procesar_recuperacion');

@@ -269,34 +269,6 @@ a.text-decoration-none:hover {
     margin-top: 1px;
 }
 
-.right-sidebar h5 {
-    font-weight: bold;
-    color: #333;
-    margin-top: 20px;
-}
-
-.contact-item {
-    padding: 8px 0;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.contact-item:hover {
-    background-color: #f0f2f5;
-    border-radius: 8px;
-}
-
-.contact-item img {
-    width: 40px;
-    height: 40px;
-    border: 2px solid #ddd;
-    margin-top: 0px;
-}
-
-.contact-item span {
-    font-size: 1rem;
-    color: #333;
-}
 
 
 
