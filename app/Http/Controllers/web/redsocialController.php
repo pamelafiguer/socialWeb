@@ -6,10 +6,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
+use App\Models\User;
+use App\Events\NewFriendRequest;
+use App\Notifications\FriendRequestNotification;
 
 
 class redsocialController extends Controller
 {
+
+    
     public function Login() {
         return view('Login');
     }

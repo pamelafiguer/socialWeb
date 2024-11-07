@@ -27,8 +27,12 @@
                         
                     </div>
                     <div class="navbar-right">
-                        <a href="#" class="nav-icon"><i class="fas fa-bell"></i></a>
-                        <a href="#" class="nav-icon"><i class="fas fa-envelope"></i></a>
+                        <!-- Botón para abrir el modal de notificaciones -->
+                        <a href="#" class="nav-icon" data-bs-toggle="modal" data-bs-target="#notificationsModal">
+                            <i class="fas fa-bell"></i>
+                            <span class="badge bg-danger" id="notificationCount">3</span>
+                        </a>
+                        <a href="#" class="nav-icon" data-bs-toggle="modal" data-bs-target="#messageModal"><i class="fas fa-envelope"></i></a>
                         <a href="/Usuario" class="nav-icon"><i class="fas fa-user-circle"></i>  {{ session('usuario_nombre', 'Usuario') }}</a>
                     </div>
                 </div>
@@ -84,6 +88,25 @@
                         <span>Aiden Brown</span>
                     </li>
                 </ul>
+            </div>
+        </div>
+
+        <div class="modal fade" id="notificationsModal" tabindex="-1" aria-labelledby="notificationsModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="notificationsModalLabel">Notificaciones</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-group">
+                            <!-- Notificaciones cargadas dinámicamente -->
+                            <li class="list-group-item">Tu amigo ha comentado tu publicación</li>
+                            <li class="list-group-item">Tienes una nueva solicitud de amistad</li>
+                            <li class="list-group-item">Se ha actualizado tu perfil</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
