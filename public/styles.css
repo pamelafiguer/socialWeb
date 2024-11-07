@@ -24,9 +24,9 @@ body {
 
   .login-container {
     width: 300px;
-    padding: 20px;
-    background-color: url(css/imgen/ciudad.jpg);
-    border-radius: 10px;
+    padding: 10px;
+    background-color: #ffffffbe;
+    border-top-left-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.719);
     text-align: center;
   }
@@ -47,7 +47,7 @@ body {
   .input-group {
     display: flex;
     align-items: center;
-    background-color: #f0e8ff;
+    background-color: transparent;
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 15px;
@@ -468,28 +468,35 @@ body {
 
 /* Panel lateral informativo */
 .info-container {
-    background: linear-gradient(270deg, #6132ee, #4d09ec);
-    color: white;
-    padding: 3rem;
-    flex: 0.7;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+  background: linear-gradient(270deg, #813db1b4, #301b70); /* Tonos oscuros */
+  color: white;
+  padding: 50px; /* Reduce el padding para un mejor ajuste */
+  width: 100%; /* Haz que ocupe todo el ancho disponible */
+  max-width: 450px; /* Ajusta el ancho deseado para que sea más ancho */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px; /* Borde redondeado en la parte inferior */
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Añade una sombra para dar profundidad */
 }
 
+
+/* Opcional: Modifica la animación de fondo */
 .info-container::before {
-    content: '';
-    position: absolute;
-    width: 200%;
-    height: 200%;
-    background: rgba(255, 255, 255, 0.1);
-    transform: rotate(45deg);
-    animation: shine 8s infinite linear;
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.05); /* Reduce la opacidad para un efecto más sutil */
+  transform: rotate(45deg);
+  animation: shine 8s infinite linear;
 }
+
 
 /* Estilos de tipografía */
 h2 {
