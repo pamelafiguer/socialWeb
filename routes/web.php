@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\redsocialController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Auth\SocialAuthController;
 
 
 Route::controller(redsocialController::class) ->group(function() {
@@ -39,3 +40,7 @@ Route::controller(redsocialController::class) ->group(function() {
 Route::get('/notifications', function () {
     return  Auth::user()->unreadNotifications;
 })->middleware('auth')->name('notifications');
+
+Route::get('auth/{provider}', [SocialAuthController::class, 'redirectToProvider'])->name('auth.social');
+Route::get('auth/{provider}/callback', [SocialAuthController::class, 'handleProviderCallback'])->name('auth.social.callback');
+Route::get('logout', [SocialAuthController::class, 'logout']);

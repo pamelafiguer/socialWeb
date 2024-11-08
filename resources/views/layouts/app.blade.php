@@ -49,6 +49,7 @@
                     <li class="nav-item"><a href="/recuerdos" class="nav-link"><i class="fas fa-clock"></i> Recuerdos</a></li>
                     <li class="nav-item"><a href="/ayuda-y-soporte" class="nav-link"><i class="fas fa-question-circle"></i> Ayuda y Soporte</a></li>
                     <li class="nav-item"><a href="/configuracion-y-privacidad" class="nav-link"><i class="fas fa-cog"></i> Configuración y Privacidad</a></li>
+                    <li class="cerrar-Sesion" id="ConfirmarCerrarSesion"><a href="{{ route('logout')}}">Cerrar Sesion</a></li>
                 </ul>
             </div>
 
