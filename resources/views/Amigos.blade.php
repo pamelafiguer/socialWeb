@@ -1,6 +1,6 @@
 @extends('layouts.appi')
 
-@section('title', 'friend Feed')
+@section('title', 'friends')
 
 @section('contenido')
     <!-- Sección de historias -->

@@ -32,9 +32,6 @@ Route::controller(redsocialController::class) ->group(function() {
 
 
     Route::post('/logout', 'logout')-> name('logout');
-    
-    
-    
 
 });
 Route::get('/notifications', function () {

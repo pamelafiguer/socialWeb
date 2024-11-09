@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Home Feed')
+@section('title', 'Home')
 
 @section('content')
     <!-- Sección de historias -->
@@ -28,7 +28,7 @@
         <div class="card-body">
             <div class="d-flex align-items-center">
                 <img src="/css/imgen/Selfie.jpeg"  alt="Usuario" class="rounded-circle me-2" style="width: 40px; height: 40px;">
-                <input type="text" class="form-control" placeholder="¿Qué estás pensando?" style="border-radius: 20px;">
+                <input type="text" class="form-control" data-bs-toggle="modal" data-bs-target="#notificationsModal" placeholder="¿Qué estás pensando?" style="border-radius: 20px;">
             </div>
             <div class="d-flex justify-content-between mt-2">
                 <button class="btn btn-light m-2 d-flex align-items-center">
@@ -50,6 +50,23 @@
             </div>
             <p>Not having fun at all</p>
             <img src="/css/imgen/Grupoparque.jpeg"  alt="Post Image" class="img-fluid rounded">
+        </div>
+    </div>
+
+    <div class="modal fade" id="notificationsModal" tabindex="-1" aria-labelledby="notificationsModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notificationsModalLabel">Notificaciones</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group" id="notificationList">
+                        <!-- Notificaciones cargadas dinámicamente -->
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

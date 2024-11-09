@@ -1,28 +1,29 @@
 
 /* Estilo general para el cuerpo */
 body {
-    background-color: #f0f2f5;
+    background-color: #5d5d5d;
     font-family: Arial, sans-serif;
 }
 
 /* Estilos para la barra de navegación */
 .navbar {
-    background-color: #fff;
+    background-color: #0e0909;
     padding: 8px 15px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 12px rgb(221 221 221 / 34%);
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-left: -20px;
     width: 102%;
+
 }
 .navbar input[type="text"] {
     border-radius: 20px;
     border: 1px solid #ddd;
     padding: 5px 15px;
-    margin-left: 65px;
+    margin-left: 90px;
     font-size: small;
-    width: 80%;
+    width: 65%;
     margin-top: 5px;
 }
 .navbar .nav-icon {
@@ -38,18 +39,18 @@ body {
 
 /* Estilos para el sidebar */
 .sidebar {
-    background-color: #fff;
+    background-color: #252424d1;
     padding: 20px;
     height: 90vh;
     width: 17%;
-    box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 0px 8px rgb(95 94 94 / 85%);
 }
 .sidebar h5 {
-    color: #f21818;
+    color: #ffffff;
     font-weight: bold;
 }
 .sidebar .nav-link {
-    color: #606770;
+    color: #ffffff;
     font-size: 16px;
     padding: 10px 15px;
     border-radius: 10px;
@@ -63,25 +64,46 @@ body {
 }
 .sidebar .nav-link:hover {
     background-color: #f0f2f5;
-    color: #f21f18;
+    color: #0a0a0a;
 }
 
 /* Estilos para el main-feed */
+.main-feed {
+    background-color: #d5d5d5;
+    padding: 30px;
+    /* margin-top: 20px; */
+    margin-left: 25px;
+    /* border-radius: 10px; */
+    box-shadow: 0px 4px 12px rgb(0 0 0);
+    font-size: small;
+    max-height: 91vh;
+    overflow-y: auto;
+}
+
+.main-feed::-webkit-scrollbar {
+    display: none; /* Oculta la barra de desplazamiento */
+}
+
+/* Para Firefox */
+.main-feed {
+    scrollbar-width: none; /* Oculta la barra de desplazamiento */
+}
 
 /* Estilos para el right-sidebar */
 .right-sidebar {
-    background-color: #fff;
+    background-color: #252424d1;
     padding: 20px;
-    height: 90vh;
+    height: 91vh;
     width: 25%;
     margin-left: 20px;
     margin-top: -05px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    /* border-radius: 10px; */
+    box-shadow: 2px 0px 8px rgb(95 94 94 / 85%);
 }
 .right-sidebar h5 {
-    color: #f21818;
     font-weight: bold;
+    color: #ffffff;
+    margin-top: 20px;
 }
 .right-sidebar .card {
     border: none;
@@ -89,14 +111,15 @@ body {
     border-radius: 10px;
 }
 .right-sidebar .btn-primary {
-    background-color: #f21818;
+    background-color: #272727;
     border: none;
     border-radius: 20px;
     padding: 5px 20px;
     font-size: small;
 }
 .right-sidebar .btn-primary:hover {
-    background-color: #b21914;
+    background-color: #5b5959;
+    color: #ffffff;
 }
 
 .navbar-right .nav-icon {
@@ -107,14 +130,15 @@ body {
     text-decoration: none;
 }
 a {
-    color: rgb(253 13 13);
+    color: rgb(255 255 255);
     text-decoration: none;
 }
 
 img, svg {
     vertical-align: middle;
     margin-top: -55px;
-    margin-left: 05px;
+    margin-left: 0px;
+
 }
 
 @media (min-width: 768px) {
@@ -165,18 +189,18 @@ img, svg {
 /* Título de sección */
 h5 {
     font-weight: bold;
-    color: #333;
+    color: #272626;
 }
 
 /* Enlace "Ver todas" */
 a.text-decoration-none {
     font-size: 0.9rem;
-    color: #1877f2;
+    color: #43474d;
 }
 
 a.text-decoration-none:hover {
     text-decoration: underline;
-    color: #0056b3;
+    color: #000000;
 }
 
 /* Estilos para la sección de historias */
@@ -197,14 +221,16 @@ a.text-decoration-none:hover {
 .story-card p {
     font-size: 0.75rem;
     margin-top: 5px;
-    color: #888;
+    color: #4b4b4b;
 }
 
 /* Estilos para el cuadro de publicación */
 .card {
     border: none;
     border-radius: 10px;
-    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 1px 5px rgb(47 43 43 / 60%);
+    background: #b9b9b9;
+
 }
 
 .card-body input[type="text"] {
@@ -245,7 +271,7 @@ a.text-decoration-none:hover {
 }
 
 .card-body p {
-    color: #555;
+    color: #161616;
 }
 
 .card-body img.img-fluid {
@@ -260,6 +286,60 @@ a.text-decoration-none:hover {
     margin-top: 1px;
 }
 
+.right-sidebar h5 {
+    font-weight: bold;
+    color: #ffffff;
+    margin-top: 20px;
+}
+
+.contact-item {
+    padding: 8px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-item:hover {
+    background-color: #ffffff;
+    border-radius: 8px;
+    color: #0a0a0a;
+}
+
+.contact-item img {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #ddd;
+    margin-top: 0px;
+}
+
+.contact-item span {
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+.contact-item span:hover {
+    font-size: 1rem;
+    color: #0e0c0c;
+}
+
+.list-group-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.notification-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.notification-content p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.notification-content small {
+    color: #aaa;
+}
 
 
 

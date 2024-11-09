@@ -18,7 +18,7 @@
                     <div class="navbar-left" style="height: 45px;">
                         
                         <input type="text" placeholder="Search">
-                        <img src="/css/imgen/Designer.png" alt="" width="55" height="55">
+                        <img src="/css/imgen/111.PNG" alt="" width="55" height="55" style="vertical-align: middle;margin-top: -55px;margin-left: 25px;">
                     </div>
                     <div class="navbar-center">
                         <a href="/feed" class="nav-icon active"><i class="fas fa-home"></i></a>
