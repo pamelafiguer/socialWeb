@@ -9,6 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/principal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <div class="container-fluid">
@@ -33,8 +34,8 @@
                         <i class="fas fa-bell"></i>
                         <span class="badge bg-danger" id="notificationCount">3</span>
                     </a>
-                    <a href="#" class="nav-icon" data-bs-toggle="modal" data-bs-target="#messageModal"><i
-                            class="fas fa-envelope"></i></a>
+                    <a href="#" class="nav-icon" data-bs-toggle="modal" data-bs-target="#messageModal">
+                        <i class="fas fa-envelope"></i></a>
                     <a href="/Usuario" class="nav-icon"><i class="fas fa-user-circle"></i>
                         {{ session('usuario_nombre', 'Usuario') }}</a>
                 </div>
@@ -121,6 +122,6 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<script src="js/feed"></script>
+<script src="js/feed.js"></script>
 
 </html>

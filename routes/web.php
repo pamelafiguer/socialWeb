@@ -14,6 +14,7 @@ Route::controller(redsocialController::class) ->group(function() {
     Route::post('/Register', 'RegisterForm')->name('RegisterForm');
     
     Route::get('/feed', 'feed')->name('feed');
+    Route::post('/feed', 'Nuevofeed')->name('Nuevofeed');
     
 
     Route::get('/Usuario', 'Usuario') ->name('Usuario');

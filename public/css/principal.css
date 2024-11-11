@@ -178,6 +178,25 @@ img, svg {
     border-radius: var(--bs-border-radius);
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
+
+.form-control-1 {
+    display: block;
+    width: 90%;
+    margin-left: 50px;
+    padding: .375rem .75rem;
+    font-size: small;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--bs-body-color);
+    background-color: var(--bs-body-bg);
+    background-clip: padding-box;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: var(--bs-border-radius);
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
 .m-2 {
     margin: .5rem !important;
     font-size: small;
@@ -339,6 +358,10 @@ a.text-decoration-none:hover {
 
 .notification-content small {
     color: #aaa;
+}
+
+.publicaciones {
+    width: 100% ;
 }
 
 

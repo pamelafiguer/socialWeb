@@ -12,6 +12,7 @@ use App\Notifications\FriendRequestNotification;
 use Illuminate\Support\Facades\Auth;
 
 
+
 class redsocialController extends Controller
 {
 
@@ -27,6 +28,42 @@ class redsocialController extends Controller
     public function videos() {
         return view('videos');
     }
+
+    public function Nuevofeed(Request $request)
+    {
+        
+        $request->validate([
+            'content' => 'required|string',
+            'image' => 'nullable|image|max:2048'
+        ]);
+        
+        
+
+
+        $content = $request->content;
+        $imagePath = null;
+
+
+        // Si el usuario ha subido una imagen, almacenarla en el directorio 'public/posts'
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('public/posts');
+            $imagePath = str_replace('public/', '', $imagePath); 
+        }
+
+        DB::statement("CALL Crear_Publicacion(?, ?, ?, ?)", [
+            session('id_usuario'),
+            $content,
+            $imagePath,
+            now()->toDateString() 
+        ]);
+
+        if (!empty($resultado) && isset($resultado[0]->user_id)) {
+            $userId = $resultado[0]->user_id;
+        }
+
+        return redirect()->back()->with('success', 'Publicación creada exitosamente.');
+    }
+
 
     public function sendFriendRequest($userId)
     {
@@ -113,6 +150,8 @@ class redsocialController extends Controller
     }
     public function feed()
     {
-        return view('feed'); 
+        $publicaciones = DB::select("SELECT * FROM publicaciones ORDER BY fecha_publicacion DESC");
+        return view('feed', compact('publicaciones'));
+        
     }
 }
