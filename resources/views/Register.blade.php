@@ -72,13 +72,13 @@
                 </div>
                 <div class="input-group">Género:
                     <div class="generos" style="margin-left: 30px;">
-                        <label for="genero">Mujer
+                        <label for="genero" id="sex" class="sex">Femenino
                             <input type="radio" name="sex" id="sex" style="margin: 10px;">
                         </label>
-                        <label for="genero">Hombre
+                        <label for="genero" id="sex" class="sex">Masculino
                             <input type="radio" name="sex" id="sex" style="margin: 10px;">
                         </label>
-                        <label for="genero">Personalizado
+                        <label for="genero" id="sex" class="sex">Personalizado
                             <input type="radio" name="sex" id="sex" style="margin: 10px;">
                         </label>
                     </div>
@@ -92,7 +92,7 @@
                 </div>
                 <div class="input-group">
                     <label for="password">
-                        <input type="password" name="password" id="password" placeholder="Contraseña Nueva"
+                        <input type="password" name="password" id="password"  placeholder="Contraseña Nueva"
                             style="width: 220%;">
                     </label>
                 </div>

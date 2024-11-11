@@ -30,39 +30,42 @@ class redsocialController extends Controller
     }
 
     public function Nuevofeed(Request $request)
-    {
-        
-        $request->validate([
-            'content' => 'required|string',
-            'image' => 'nullable|image|max:2048'
-        ]);
-        
-        
+    
+{
+    // Verifica si el usuario está autenticado
+    if (!Auth::check()) {
+        return redirect()->route('login')->withErrors('Debes iniciar sesión para publicar.');
+    }
 
+    $request->validate([
+        'content' => 'required|string',
+        'image' => 'nullable|image|max:2048'
+    ]);
 
-        $content = $request->content;
-        $imagePath = null;
+    $userId = Auth::id();
+    $content = $request->content;
+    $imagePath = null;
 
+    // Si el usuario ha subido una imagen, almacenarla en el directorio 'public/posts'
+    if ($request->hasFile('image')) {
+        $imagePath = $request->file('image')->store('public/posts');
+        $imagePath = str_replace('public/', '', $imagePath); 
+    }
 
-        // Si el usuario ha subido una imagen, almacenarla en el directorio 'public/posts'
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('public/posts');
-            $imagePath = str_replace('public/', '', $imagePath); 
-        }
-
+    try {
         DB::statement("CALL Crear_Publicacion(?, ?, ?, ?)", [
-            session('id_usuario'),
+            $userId,
             $content,
             $imagePath,
             now()->toDateString() 
         ]);
 
-        if (!empty($resultado) && isset($resultado[0]->user_id)) {
-            $userId = $resultado[0]->user_id;
-        }
-
         return redirect()->back()->with('success', 'Publicación creada exitosamente.');
+    } catch (\Exception $e) {
+        return redirect()->back()->withErrors('Error al crear la publicación: ' . $e->getMessage());
     }
+}
+
 
 
     public function sendFriendRequest($userId)
@@ -88,6 +91,7 @@ class redsocialController extends Controller
     }
 
     public function LoginForm(Request $request) {
+
         $request->validate([
             'email' => 'required|email',
             'password' => 'required'
@@ -95,19 +99,27 @@ class redsocialController extends Controller
 
         $correo = $request->input('email');
         $password = $request->input('password');
-
-        $usuario = DB::select('call Usuario_Login(?,?)', [$correo, $password]) ;
-
+        
+        $usuario = DB::select('call Usuario_Login(?, ?)', [$correo, $password]);
+    
         if ($usuario && $correo === $usuario[0]->email && $password === $usuario[0]->passwordd) {
             
-            session([
-                'usuario' => $usuario[0]->id_usuario,
-                'usuario_nombre' => $usuario[0]->nombre]);
-                
+            Auth::loginUsingId($usuario[0]->id_usuario);
+    
+            session(['usuario_nombre' => $usuario[0]->nombre]);
+    
             return redirect('/feed')->with('success', 'Ingreso exitoso');
-            
         }
+    
+        return back()->withErrors([
+            'email' => 'Las credenciales no coinciden con nuestros registros.',
+        ]);
     }
+    
+    
+
+
+
     public function Register() {
         return view('Register');
     }
@@ -118,7 +130,7 @@ class redsocialController extends Controller
                 'Apellidos' => 'required',
                 'birthday_day' => 'required',
                 'birthday_month' => 'required',
-                'birthday_year' => 'required'. now()->year,
+                'birthday_year' => 'required',
                 'sex' => 'required',
                 'email' => 'required',
                 'password' => 'required'
@@ -142,7 +154,7 @@ class redsocialController extends Controller
                 $request->input('password'),
 
             ]);
-            return redirect('/feed')->with('success', 'Registro exitoso');
+            return redirect('/')->with('success', 'Registro exitoso');
         
     }
     public function Usuario() {

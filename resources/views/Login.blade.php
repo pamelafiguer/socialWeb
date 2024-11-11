@@ -24,7 +24,7 @@
                             <path
                                 d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
                         </svg>
-                        <input type="email" name="email" id="email" placeholder="Correo">
+                        <input type="email" name="email" id="email" autocomplete="username" placeholder="Correo">
                     </div>
 
                     <div class="input-group">
@@ -32,7 +32,7 @@
                             <path
                                 d="M12 2a5 5 0 00-5 5v3H6c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2h-1V7a5 5 0 00-5-5zm0 2a3 3 0 013 3v3H9V7a3 3 0 013-3zm-1 10h2v4h-2v-4z" />
                         </svg>
-                        <input type="password" name="password" id="password" placeholder="Password">
+                        <input type="password" name="password" id="password" autocomplete="current-password" placeholder="Password">
                     </div>
 
                     <button class="login-btn">Login Now</button>
