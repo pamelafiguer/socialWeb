@@ -4,8 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\redsocialController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\SocialAuthController;
+use App\Http\Middleware\CustomAuthMiddleware;
 
-Route::controller(redsocialController::class)->group(function() {
+Route::controller(redsocialController::class)->group(function () {
     Route::get('/', 'Login')->name('login');
     Route::post('/', 'LoginForm')->name('LoginForm');
 
@@ -20,7 +21,7 @@ Route::controller(redsocialController::class)->group(function() {
 });
 
 // Rutas protegidas por el middleware de autenticación
-Route::middleware(['auth'])->group(function () {
+Route::middleware([CustomAuthMiddleware::class])->group(function () {
     Route::get('/feed', [redsocialController::class, 'feed'])->name('feed');
     Route::post('/feed', [redsocialController::class, 'Nuevofeed'])->name('Nuevofeed');
 
@@ -28,10 +29,16 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/Usuario', [redsocialController::class, 'UsuarioForm'])->name('UsuarioForm');
 
     Route::get('/amigos', [redsocialController::class, 'Amigos'])->name('Amigos');
+    Route::get('/Solicitudes', [redsocialController::class, 'Solicitudes'])->name('Solicitudes');
+    Route::post('/amigos/enviar/{idUsuario1}/{idUsuario2}', [redsocialController::class, 'enviarSolicitud']);
+    Route::post('/amigos/aceptar/{idUsuario1}/{idUsuario2}', [redsocialController::class, 'aceptarSolicitud']);
+    Route::post('/amigos/rechazar/{idUsuario1}/{idUsuario2}', [redsocialController::class, 'rechazarSolicitud']);
+
+    Route::get('/buscar', [redsocialController::class, 'buscar'])->name('buscar');
     Route::get('/videos', [redsocialController::class, 'videos'])->name('videos');
 
     Route::post('/logout', [redsocialController::class, 'logout'])->name('logout');
-    
+
     // Ruta para obtener notificaciones no leídas
     Route::get('/notifications', function () {
         return Auth::user()->unreadNotifications;
@@ -41,4 +48,4 @@ Route::middleware(['auth'])->group(function () {
 // Rutas para autenticación social
 Route::get('auth/{provider}', [SocialAuthController::class, 'redirectToProvider'])->name('auth.social');
 Route::get('auth/{provider}/callback', [SocialAuthController::class, 'handleProviderCallback'])->name('auth.social.callback');
-Route::get('logout', [SocialAuthController::class, 'logout'])->name('social.logout'); 
+Route::get('logout', [SocialAuthController::class, 'logout'])->name('social.logout');

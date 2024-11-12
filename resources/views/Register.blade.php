@@ -59,7 +59,7 @@
 
                     <label for="Year">Año:
 
-                        <select class="custom-select-3" name="bithday_year" id="year" style="width: 120%;">
+                        <select class="custom-select-3" name="birthday_year" id="year" style="width: 120%;">
                             <?php
                             
                             for ($year = 2024; $year >= 1905; $year--) {
@@ -72,28 +72,33 @@
                 </div>
                 <div class="input-group">Género:
                     <div class="generos" style="margin-left: 30px;">
-                        <label for="genero" id="sex" class="sex">Femenino
-                            <input type="radio" name="sex" id="sex" style="margin: 10px;">
+                        <label for="genero" id="sex-fem" class="sex">Femenino
+                            <input type="radio" value="Femenino" name="sex" id="sex-femenino" style="margin: 5px;">
                         </label>
-                        <label for="genero" id="sex" class="sex">Masculino
-                            <input type="radio" name="sex" id="sex" style="margin: 10px;">
+                        <label for="genero" id="sex-male" class="sex">Masculino
+                            <input type="radio" value="Masculino" name="sex" id="sex-masculino" style="margin: 5px;">
                         </label>
-                        <label for="genero" id="sex" class="sex">Personalizado
-                            <input type="radio" name="sex" id="sex" style="margin: 10px;">
+                        <label for="genero" id="sex-oth" class="sex">Personalizado
+                            <input type="radio" value="Others" name="sex" id="sex-others" style="margin: 5px;">
                         </label>
                     </div>
 
                 </div>
                 <div class="input-group">
                     <label for="email">
-                        <input type="email" name="email" id="correo" placeholder="Ingresa tu correo"
+                        <input type="email" name="email" id="correo" autocomplete="username" placeholder="Ingresa tu correo"
                             style="width: 220%;">
                     </label>
                 </div>
                 <div class="input-group">
                     <label for="password">
-                        <input type="password" name="password" id="password"  placeholder="Contraseña Nueva"
+                        <input type="password" name="password" id="password" autocomplete="current-password" placeholder="Contraseña Nueva"
                             style="width: 220%;">
+                    </label>
+                </div>
+                <div class="input-group">
+                    <label for="password_confirmation">
+                        <input type="password" name="password_confirmation" id="password_confirmation" autocomplete="new-password" placeholder="Confirmar Contraseña" style="width: 220%;">
                     </label>
                 </div>
                 <div class="input-group">
@@ -101,9 +106,7 @@
                         <button> Registrarte </button>
                     </label>
                     <br>
-                    <br>
-
-
+                    
                     <a href="/">¿Ya tienes una cuenta? </a>
                 </div>
 
@@ -119,6 +122,16 @@
     </form>
     </div>
     </div>
+
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
 </body>
 

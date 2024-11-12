@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Events\\NewFriendRequest' => $baseDir . '/app/Events/NewFriendRequest.php',
+    'App\\Http\\Controllers\\Auth\\SocialAuthController' => $baseDir . '/app/Http/Controllers/Auth/SocialAuthController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\web\\redsocialController' => $baseDir . '/app/Http/Controllers/web/redsocialController.php',
     'App\\Models\\FriendRequest' => $baseDir . '/app/Models/FriendRequest.php',

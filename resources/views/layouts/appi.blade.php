@@ -27,9 +27,13 @@
                         
                     </div>
                     <div class="navbar-right">
-                        <a href="#" class="nav-icon"><i class="fas fa-bell"></i></a>
-                        <a href="#" class="nav-icon"><i class="fas fa-envelope"></i></a>
-                        <a href="/Usuario" class="nav-icon"><i class="fas fa-user-circle"></i>  {{ session('usuario_nombre', 'Usuario') }}</a>
+                        <a href="#" class="nav-icon" data-bs-toggle="modal" data-bs-target="#notificationsModal">
+                            <i class="fas fa-bell"></i>
+                            <span class="badge bg-danger" id="notificationCount">3</span>
+                        </a>
+                        <a href="#" class="nav-icon" data-bs-toggle="modal" data-bs-target="#messageModal">
+                            <i class="fas fa-envelope"></i></a>
+                        <a href="/Usuario" class="nav-icon"><i class="fas fa-user-circle"></i>  {{ Auth::check() ? Auth::user()->nombre : 'nombre' }}</a>
                     </div>
                 </div>
             </header>
@@ -37,14 +41,9 @@
             <div class="col-md-3 sidebar">
                 <h5>Home</h5>
                 <ul class="nav flex-column">
-                    <li class="nav-item"><a href="/Usuario" class="nav-link"><i class="fas fa-user"></i>  {{ session('usuario_nombre', 'Usuario') }}</a></li>
-                    <li class="nav-item"><a href="/videos" class="nav-link"><i class="fas fa-video"></i> Videos</a></li>
-                    <li class="nav-item"><a href="/eventos" class="nav-link"><i class="fas fa-calendar-alt"></i> Eventos</a></li>
-                    <li class="nav-item"><a href="/guardado" class="nav-link"><i class="fas fa-bookmark"></i> Guardado</a></li>
-                    <li class="nav-item"><a href="/favoritos" class="nav-link"><i class="fas fa-star"></i> Favoritos</a></li>
-                    <li class="nav-item"><a href="/recuerdos" class="nav-link"><i class="fas fa-clock"></i> Recuerdos</a></li>
-                    <li class="nav-item"><a href="/ayuda-y-soporte" class="nav-link"><i class="fas fa-question-circle"></i> Ayuda y Soporte</a></li>
-                    <li class="nav-item"><a href="/configuracion-y-privacidad" class="nav-link"><i class="fas fa-cog"></i> Configuración y Privacidad</a></li>
+                    <li class="nav-item"><a href="/Usuario" class="nav-link"><i class="fas fa-user"></i>  {{ Auth::check() ? Auth::user()->nombre : 'nombre' }}</a></li>
+                    <li class="nav-item"><a href="/Solicitudes" class="nav-link"><i class="fas fa-user-plus"></i> Solicitudes de amistad</a></li>
+                    <li class="nav-item"><a href="/amigos" class="nav-link"><i class= "fas fa-users"></i> Todos los amigos</a></li>
                 </ul>
             </div>
 
@@ -54,6 +53,27 @@
 
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    
+    <div class="modal fade" id="notificationsModal" tabindex="-1" aria-labelledby="notificationsModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notificationsModalLabel">Notificaciones</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group" id="notificationList">
+                        <!-- Notificaciones cargadas dinámicamente -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+<script src="js/feed.js"></script>
 
 </html>

@@ -539,6 +539,7 @@ class ComposerStaticInit589cc0f65c3aaa7d4e9024d545bc1974
 
     public static $classMap = array (
         'App\\Events\\NewFriendRequest' => __DIR__ . '/../..' . '/app/Events/NewFriendRequest.php',
+        'App\\Http\\Controllers\\Auth\\SocialAuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/SocialAuthController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\web\\redsocialController' => __DIR__ . '/../..' . '/app/Http/Controllers/web/redsocialController.php',
         'App\\Models\\FriendRequest' => __DIR__ . '/../..' . '/app/Models/FriendRequest.php',

@@ -61,10 +61,10 @@
         @foreach ($publicaciones as $publicacion)
             <div class="card mb-3">
                 <div class="card-body">
-                    <h6 class="mb-0">{{ session('usuario_nombre', 'Usuario') }}</h6>
+                    <h6 class="mb-0">{{ Auth::check() ? Auth::user()->nombre : 'nombre' }}</h6>
                     <p>{{ $publicacion->contenido }}</p>
                     @if ($publicacion->imagen)
-                        <img src="{{ asset('storage/' . $publicacion->imagen) }}" alt="Imagen de publicación"
+                        <img src="{{ asset('storage/public/'. $publicacion->imagen) }}" alt="Imagen de publicación"
                             class="img-fluid rounded">
                     @endif
                 </div>
@@ -84,13 +84,13 @@
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('Nuevofeed') }}" id="postForm" method="POST" enctype="multipart/form-data">
-                        @csrf <!-- Token de seguridad para Laravel -->
+                        @csrf 
                         <div class="mb-3">
                             <textarea class="form-control" id="postContent" name="content" rows="3" placeholder="Escribe algo..."></textarea>
                         </div>
                         <div class="mb-3">
-                            <label for="postImage" class="form-label">Subir Imagen (opcional)</label>
-                            <input class="form-control" type="file" id="postImage" name="image" accept="image/*">
+                            <label for="postImages" class="form-label">Subir Imágenes</label>
+                            <input class="form-control" type="file" id="postImages" name="images" accept="image/*" multiple>
                         </div>
                         <button type="submit" class="btn btn-primary">Publicar</button>
                     </form>

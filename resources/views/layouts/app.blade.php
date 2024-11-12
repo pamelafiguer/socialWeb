@@ -19,9 +19,16 @@
             <div class="navbar">
                 <div class="navbar-left" style="height: 45px;">
 
-                    <input type="text" placeholder="Search">
+                    <input type="text" id="searchInput" placeholder="Search" oninput="searchResults()">
                     <img src="/css/imgen/111.PNG" alt="" width="55" height="55" style="vertical-align: middle;margin-top: -55px;margin-left: 25px;">
                 </div>
+
+                <div id="searchResults" class="SearchResults">
+                    <ul id="searchResultsList" class="list-unstyled">
+                        <!-- Resultados de búsqueda se insertarán aquí dinámicamente -->
+                    </ul>
+                </div>
+
                 <div class="navbar-center" style="margin-left: -130px;">
                     <a href="/feed" class="nav-icon active"><i class="fas fa-home"></i></a>
                     <a href="/videos" class="nav-icon"><i class="fas fa-tv"></i></a>
@@ -37,7 +44,7 @@
                     <a href="#" class="nav-icon" data-bs-toggle="modal" data-bs-target="#messageModal">
                         <i class="fas fa-envelope"></i></a>
                     <a href="/Usuario" class="nav-icon"><i class="fas fa-user-circle"></i>
-                        {{ session('usuario_nombre', 'Usuario') }}</a>
+                        {{ Auth::check() ? Auth::user()->nombre : 'nombre' }}</a>
                 </div>
             </div>
         </header>
@@ -120,6 +127,8 @@
         </div>
     </div>
 </div>
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script src="js/feed.js"></script>

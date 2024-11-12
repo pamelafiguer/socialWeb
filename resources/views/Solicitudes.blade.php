@@ -1,11 +1,11 @@
 @extends('layouts.appi')
 
-@section('title', 'friends')
+@section('title', 'Solicitudes')
 
 @section('contenido')
 
 <div class="container">
-    <h3>Amigos</h3>
+    <h3>Solicitudes de Amistad</h3>
     <div class="row">
         @foreach($solicitudes as $solicitud)
             <div class="col-md-4">
@@ -23,7 +23,7 @@
 </div>
 
 
-<script src="js/amigos.js"></script>
+<script src="js/solicitudes.js"></script>
 
 
 @endsection
