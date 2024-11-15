@@ -29,7 +29,7 @@
                     <div class="navbar-right">
                         <a href="#" class="nav-icon"><i class="fas fa-bell"></i></a>
                         <a href="#" class="nav-icon"><i class="fas fa-envelope"></i></a>
-                        <a href="/Usuario" class="nav-icon"><i class="fas fa-user-circle"></i>  {{ session('usuario_nombre', 'Usuario') }}</a>
+                        <a href="/Usuario" class="nav-icon"><i class="fas fa-user-circle"></i> {{ Auth::check() ? Auth::user()->nombre : 'nombre' }}</a>
                     </div>
                 </div>
             </header>

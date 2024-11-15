@@ -33,7 +33,7 @@
                     <a href="/feed" class="nav-icon active"><i class="fas fa-home"></i></a>
                     <a href="/videos" class="nav-icon"><i class="fas fa-tv"></i></a>
                     <a href="/amigos" class="nav-icon"><i class="fas fa-users"></i></a>
-
+                    
                 </div>
                 <div class="navbar-right">
                     <!-- Botón para abrir el modal de notificaciones -->

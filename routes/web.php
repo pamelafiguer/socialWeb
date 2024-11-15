@@ -1,51 +1,35 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Web\redsocialController;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\web\redsocialController;
 use App\Http\Controllers\Auth\SocialAuthController;
 use App\Http\Middleware\CustomAuthMiddleware;
 
 Route::controller(redsocialController::class)->group(function () {
     Route::get('/', 'Login')->name('login');
     Route::post('/', 'LoginForm')->name('LoginForm');
-
     Route::get('/Register', 'Register')->name('Register');
     Route::post('/Register', 'RegisterForm')->name('RegisterForm');
-
-    Route::get('/recuperarPassword', 'showRecoverForm')->name('recuperarPassword');
-    Route::post('/recuperarPassword', 'recover')->name('procesar_recuperacion');
-
-    Route::get('/cambiarPassword', 'showChangePasswordForm')->name('cambiar_password');
-    Route::post('/cambiarPassword', 'changePassword')->name('actualizar_password');
 });
 
-// Rutas protegidas por el middleware de autenticación
 Route::middleware([CustomAuthMiddleware::class])->group(function () {
     Route::get('/feed', [redsocialController::class, 'feed'])->name('feed');
     Route::post('/feed', [redsocialController::class, 'Nuevofeed'])->name('Nuevofeed');
 
     Route::get('/Usuario', [redsocialController::class, 'Usuario'])->name('Usuario');
-    Route::post('/Usuario', [redsocialController::class, 'UsuarioForm'])->name('UsuarioForm');
 
-    Route::get('/amigos', [redsocialController::class, 'Amigos'])->name('Amigos');
-    Route::get('/Solicitudes', [redsocialController::class, 'Solicitudes'])->name('Solicitudes');
-    Route::post('/amigos/enviar/{idUsuario1}/{idUsuario2}', [redsocialController::class, 'enviarSolicitud']);
-    Route::post('/amigos/aceptar/{idUsuario1}/{idUsuario2}', [redsocialController::class, 'aceptarSolicitud']);
-    Route::post('/amigos/rechazar/{idUsuario1}/{idUsuario2}', [redsocialController::class, 'rechazarSolicitud']);
+    Route::get('/amigos', [redsocialController::class, 'listFriends'])->name('amigos');
+    Route::get('/Solicitudes', [redsocialController::class, 'receivedRequests'])->name('Solicitudes');
+    Route::get('/EnviarSolicitudes', [redsocialController::class, 'EnviarSolicitudes']);
+    Route::post('/enviarSolicitud/{receiverId}', [redsocialController::class, 'enviarSolicitud'])->name('enviarSolicitud');
+    Route::post('/aceptarSolicitud/{senderId}', [redsocialController::class, 'Solicitud'])->name('aceptarSolicitud');
+
 
     Route::get('/buscar', [redsocialController::class, 'buscar'])->name('buscar');
     Route::get('/videos', [redsocialController::class, 'videos'])->name('videos');
-
     Route::post('/logout', [redsocialController::class, 'logout'])->name('logout');
-
-    // Ruta para obtener notificaciones no leídas
-    Route::get('/notifications', function () {
-        return Auth::user()->unreadNotifications;
-    })->name('notifications');
 });
 
-// Rutas para autenticación social
 Route::get('auth/{provider}', [SocialAuthController::class, 'redirectToProvider'])->name('auth.social');
 Route::get('auth/{provider}/callback', [SocialAuthController::class, 'handleProviderCallback'])->name('auth.social.callback');
 Route::get('logout', [SocialAuthController::class, 'logout'])->name('social.logout');

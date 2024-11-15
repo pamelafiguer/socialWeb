@@ -1,32 +1,26 @@
 @extends('layouts.appi')
-
 @section('title', 'Solicitudes')
-
 @section('contenido')
+    <h2>Solicitudes de amistad recibidas</h2>
+    @foreach ($requests as $user)
+        <div>
+            <span>{{ $user->nombre }}</span>
+            <button onclick="acceptFriendRequest({{ $user->id_usuario }})">Aceptar</button>
+        </div>
+    @endforeach
 
-<div class="container">
-    <h3>Solicitudes de Amistad</h3>
-    <div class="row">
-        @foreach($solicitudes as $solicitud)
-            <div class="col-md-4">
-                <div class="card mb-3">
-                    <img src="{{ $solicitud->foto_perfil }}" class="card-img-top" alt="{{ $solicitud->nombre }}">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">{{ $solicitud->nombre }}</h5>
-                        <button onclick="aceptarSolicitud({{ $solicitud->id_usuario }})" class="btn btn-primary">Confirmar</button>
-                        <button onclick="rechazarSolicitud({{ $solicitud->id_usuario }})" class="btn btn-secondary">Eliminar</button>
-                    </div>
-                </div>
-            </div>
-        @endforeach
-    </div>
-</div>
-
-
-<script src="js/solicitudes.js"></script>
-
-
+    <script>
+        function acceptFriendRequest(senderId) {
+            fetch(`/aceptarSolicitud/${senderId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                }
+            })
+            .then(response => response.json())
+            .then(data => alert(data.message))
+            .catch(error => console.error(error));
+        }
+    </script>
 @endsection
-
-    
-

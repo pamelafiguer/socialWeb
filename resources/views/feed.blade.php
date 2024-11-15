@@ -34,14 +34,12 @@
                     placeholder="¿Qué estás pensando?" style="border-radius: 20px;">
             </div>
             <div class="d-flex justify-content-between mt-2">
-                <button class="btn btn-light m-2 d-flex align-items-center">
-                    <i class="fas fa-camera-retro me-1"></i> Foto
-                </button>
-                <button class="btn btn-light d-flex align-items-center" style="margin-left: 15px;">
-                    <i class="fas fa-video me-1"></i> Video
-                </button>
+                <button class="btn btn-light"><i class="fas fa-video"></i> Video en vivo</button>
+                <button class="btn btn-light"><i class="fas fa-image"></i> Foto/Video</button>
+                <button class="btn btn-light"><i class="fas fa-smile"></i> Acontecimiento importante</button>
             </div>
         </div>
+
     </div>
 
     <!-- Ejemplo de post -->

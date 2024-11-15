@@ -21,8 +21,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         data.forEach(result => {
                             let resultElement = document.createElement('div');
                             resultElement.classList.add('search-result');
-                            resultElement.innerHTML = `<i class="fas fa-arrow-left">`;
-                            resultElement.innerHTML = `<p>${result.nombre}</p></i>`;
+                            resultElement.innerHTML = `<i class="fas fa-arrow-left"></i>`;
+                            resultElement.innerHTML = `<p>${result.nombre}</p>`;
+                            resultElement.innerHTML = `<a ref=/Usuario>${result.nombre}</a>`;
                             resultsList.appendChild(resultElement);
                         });
                         resultsContainer.style.display = 'block';  // Mostrar los resultados

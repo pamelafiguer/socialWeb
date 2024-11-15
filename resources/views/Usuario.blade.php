@@ -3,59 +3,58 @@
 @section('title', 'Perfil Usuario')
 
 @section('contenido-user')
-
     <div class="container">
         <!-- Encabezado de la barra superior -->
-        
-
-        <!-- Sección de Portada y Perfil -->
-        <section class="profile-header">
+        <header class="profile-header">
             <div class="cover-photo">
-                <button class="add-cover-photo">Agregar foto de portada</button>
+                <button class="btn btn-primary add-cover-photo">Agregar foto de portada</button>
             </div>
-            <div class="profile-info">
-                <img src="" alt="Foto de perfil" class="profile-photo">
-                <h1 class="profile-name">Sofia Rosas</h1>
-                <button class="add-story"><i class="fas fa-plus-circle"></i> Agregar a historia</button>
-                <button class="edit-profile"><i class="fas fa-edit"></i> Editar perfil</button>
+            <div class="profile-info d-flex align-items-center">
+                <img src="https://via.placeholder.com/100" alt="Foto de perfil" class="profile-photo rounded-circle">
+                <div class="ml-3">
+                    <h1 class="profile-name"> {{ Auth::check() ? Auth::user()->nombre : 'nombre' }} </h1>
+                    <button class="btn btn-primary btn-sm add-story"><i class="fas fa-plus-circle"></i> Agregar a historia</button>
+                    <button class="btn btn-secondary btn-sm edit-profile"><i class="fas fa-edit"></i> Editar perfil</button>
+                </div>
             </div>
-            <nav class="profile-nav">
-                <a href="#">Publicaciones</a>
-                <a href="#">Información</a>
-                <a href="#">Amigos</a>
-                <a href="#">Fotos</a>
-                <a href="#">Videos</a>
-                <a href="#">Registros de visitas</a>
-                <a href="#">Más</a>
+            <nav class="profile-nav mt-3">
+                <ul class="nav nav-pills">
+                    <li class="nav-item"><a class="nav-link active" href="#">Publicaciones</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Información</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Amigos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Fotos</a></li>
+                </ul>
             </nav>
-        </section>
+        </header>
 
         <!-- Sección de Detalles y Publicaciones -->
-        <main class="main-content">
-            <aside class="sidebar">
-                <h2>Detalles</h2>
-                <button>Agregar presentación</button>
-                <button>Editar detalles</button>
-                <button>Agregar destacados</button>
-            </aside>
-
-            <section class="posts">
-                <div class="new-post">
-                    <img src="https://via.placeholder.com/40" alt="Icono usuario">
-                    <input type="text" placeholder="¿Qué estás pensando?" class="post-input">
-                    <div class="post-options">
-                        <button><i class="fas fa-video"></i> Video en vivo</button>
-                        <button><i class="fas fa-image"></i> Foto/Video</button>
-                        <button><i class="fas fa-smile"></i> Acontecimiento importante</button>
+        <div class="row mt-4">
+            <aside class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Detalles</h5>
+                        <button class="btn btn-outline-primary btn-block">Agregar presentación</button>
+                        <button class="btn btn-outline-secondary btn-block">Editar detalles</button>
+                        <button class="btn btn-outline-success btn-block">Agregar destacados</button>
                     </div>
                 </div>
+            </aside>
+            
+            <section class="col-md-8">
 
-                <div class="post">
-                    <h3>Publicaciones</h3>
-                    <button>Filtros</button>
-                    <button>Administrar publicaciones</button>
+                <div class="post card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5>Publicaciones</h5>
+                        <div>
+                            <button class="btn btn-light">Filtros</button>
+                            <button class="btn btn-light">Administrar publicaciones</button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>No hay publicaciones recientes.</p>
+                    </div>
                 </div>
             </section>
-        </main>
+        </div>
     </div>
 @endsection
