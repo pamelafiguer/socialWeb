@@ -25,7 +25,7 @@ class SocialAuthController extends Controller
         $password = str::random(10);
 
         DB::statement('call Usuario_Login(?,?)', [$socialUser->getEmail(), $password]);
-        // Guardar datos del usuario en sesión
+        
         Session::put('user', [
             'name' => $socialUser->getName(),
             'email' => $socialUser->getEmail(),

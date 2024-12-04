@@ -16,9 +16,9 @@ class CustomAuthMiddleware
      */
     public function handle($request, Closure $next)
     {
-        // Verifica si el usuario está autenticado usando `id_usuario`
+        
         if (!Auth::check() || !Auth::user()->id_usuario) {
-            // Redirecciona o devuelve una respuesta si no está autenticado
+            
             return redirect()->route('login')->with('error', 'Por favor, inicia sesión');
         }
 

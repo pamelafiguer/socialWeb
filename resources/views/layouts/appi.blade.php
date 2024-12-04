@@ -28,13 +28,17 @@
                         
                     </div>
                     <div class="navbar-right">
+                    
                         <a href="#" class="nav-icon" data-bs-toggle="modal" data-bs-target="#notificationsModal">
                             <i class="fas fa-bell"></i>
                             <span class="badge bg-danger" id="notificationCount">3</span>
                         </a>
                         <a href="#" class="nav-icon" data-bs-toggle="modal" data-bs-target="#messageModal">
                             <i class="fas fa-envelope"></i></a>
-                        <a href="/Usuario" class="nav-icon"><i class="fas fa-user-circle"></i>  {{ Auth::check() ? Auth::user()->nombre : 'nombre' }}</a>
+                        <a href="/Usuario" class="nav-icon">
+                            <img src="{{ Auth::user()->foto_perfil ? asset('storage/public/' . Auth::user()->foto_perfil) : 'https://via.placeholder.com/100' }}"
+                                        class="rounded-circle me-2" style="width: 30px;height: 30px;margin-top: 0.1px;/* border-radius: 100px; */;object-fit: cover;" >
+                            {{ Auth::check() ? Auth::user()->nombre : 'nombre' }}</a>
                     </div>
                 </div>
             </header>
@@ -68,7 +72,7 @@
                 </div>
                 <div class="modal-body">
                     <ul class="list-group" id="notificationList">
-                        <!-- Notificaciones cargadas dinámicamente -->
+                        
                     </ul>
                 </div>
             </div>

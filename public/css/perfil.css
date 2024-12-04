@@ -70,7 +70,7 @@ body {
 /* Estilos para el main-feed */
 .main-feed {
     background-color: #d5d5d5;
-    padding: 60px;
+    padding: 100px;
     /* margin-top: 20px; */
     margin-left: 25px;
     /* border-radius: 10px; */
@@ -78,6 +78,7 @@ body {
     font-size: small;
     max-height: 91vh;
     overflow-y: auto;
+
 }
 
 .main-feed::-webkit-scrollbar {
@@ -198,7 +199,6 @@ img, svg {
 
 .mt-3 {
     margin-top: 1rem !important;
-    background: #252525;
     border-radius: 20px;
 }
 
@@ -416,6 +416,70 @@ a.text-decoration-none:hover {
     color: #aaa;
 }
 
+#toastContainer .toast {
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    padding: 15px; /* Espaciado interno */
+}
 
+.toast-body {
+    font-size: 16px; /* Tamaño de la fuente */
+}
 
+.toast.bg-success {
+    background-color: #28a745 !important; /* Verde para éxito */
+}
 
+.toast.bg-danger {
+    background-color: #dc3545 !important; /* Rojo para error */
+}
+.text-muted {
+    --bs-text-opacity: 1;
+    color: var(--bs-secondary-color) !important;
+    margin-left: 70%;
+}
+
+.profile-nav {
+    background-color: #ffffff;
+    padding-bottom: 0;
+    margin-top: 20px;
+}
+
+.profile-nav .nav {
+    border-bottom: 2px solid #ddd;
+    padding: 0 20px;
+    margin-left: -370px;
+}
+
+.profile-nav .nav-link {
+    color: #555; /* Texto estándar */
+    font-weight: bold;
+    font-size: 16px;
+    padding: 12px 20px;
+    text-decoration: none;
+    border-bottom: 2px solid transparent; /* Transición para pestaña activa */
+    transition: all 0.3s ease;
+}
+
+.profile-nav .nav-link:hover {
+    color: #ef4343;
+}
+
+.profile-nav .nav-link.active {
+    color: #ef4343;
+    border-bottom: 2px solid #ff0000;
+}
+
+.profile-nav .badge {
+    background-color: #f0f0f0; /* Fondo neutro para el contador */
+    color: #333;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 12px; /* Redondeado */
+    margin-left: 5px;
+    font-weight: normal;
+}
+
+.nav-item-2 {
+    content: normal;
+}

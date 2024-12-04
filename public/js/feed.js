@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const notificationList = document.getElementById('notificationList');
     const notificationCount = document.getElementById('notificationCount');
     
-    // Definición de la función searchResults
+    
     function searchResults() {
         let query = document.getElementById('searchInput').value;
         
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(data => {
                     let resultsContainer = document.getElementById('searchResults');
                     let resultsList = document.getElementById('searchResultsList');
-                    resultsList.innerHTML = '';  // Limpiar resultados anteriores
+                    resultsList.innerHTML = '';  
                     
                     if (data.length === 0) {
                         resultsContainer.innerHTML = '<p>No se encontraron resultados.</p>';
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             resultElement.innerHTML = `<a ref=/Usuario>${result.nombre}</a>`;
                             resultsList.appendChild(resultElement);
                         });
-                        resultsContainer.style.display = 'block';  // Mostrar los resultados
+                        resultsContainer.style.display = 'block';  
                     }
                 })
                 .catch(error => console.error('Error al buscar:', error));
@@ -35,17 +35,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Agregar el evento al input para ejecutar searchResults
+    
     document.getElementById('searchInput').addEventListener('input', searchResults);
 
-    // Manejar la tecla Backspace para ocultar los resultados
+    
     document.getElementById('searchInput').addEventListener('keydown', function(event) {
         if (event.key === 'Backspace') {
             document.getElementById('searchResults').style.display = 'none';
         }
     });
 
-    // Cargar las notificaciones
+    
     async function loadNotifications() {
         try {
             const response = await fetch("{{ route('notifications') }}");

@@ -3,27 +3,27 @@
 @section('title', 'friend Feed')
 
 @section('contenido')
-    <!-- Sección de historias -->
+    
     <div class="d-flex justify-content-between mb-3 align-items-center">
         <h5><i class="fas fa-book-open me-2"></i>Historias</h5>
         <a href="#" class="text-decoration-none">Ver todas</a>
     </div>
     
     <div class="d-flex overflow-auto mb-3">
-        <!-- Tarjeta de historia (Añadir historia) -->
+        
         <div class="story-card me-2 text-center">
             <img src="/css/imgen/Selfie.jpeg" alt="Avatar" class="rounded-circle" style="width: 60px; height: 60px;">
             <p class="small mt-2">Añade tu historia</p>
         </div>
-        <!-- Otras historias (ejemplo) -->
+        
         <div class="story-card me-2 text-center">
             <img src="/css/imgen/Grupoparque.jpeg" alt="Amigo" class="rounded-circle" style="width: 60px; height: 60px;">
             <p class="small mt-2">Nombre Amigo</p>
         </div>
-        <!-- Más tarjetas de historia según sea necesario -->
+        
     </div>
     
-    <!-- Sección para añadir un post -->
+    
     <div class="card mb-3">
         <div class="card-body">
             <div class="d-flex align-items-center">
@@ -41,7 +41,7 @@
         </div>
     </div>
     
-    <!-- Ejemplo de post -->
+    
     <div class="card mb-3">
         <div class="card-body">
             <div class="d-flex align-items-center mb-2">

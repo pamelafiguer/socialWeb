@@ -18,14 +18,13 @@
         <header>
             <div class="navbar">
                 <div class="navbar-left" style="height: 45px;">
-
                     <input type="text" id="searchInput" placeholder="Search" oninput="searchResults()">
                     <img src="/css/imgen/111.PNG" alt="" width="55" height="55" style="vertical-align: middle;margin-top: -55px;margin-left: 25px;">
                 </div>
 
                 <div id="searchResults" class="SearchResults">
                     <ul id="searchResultsList" class="list-unstyled">
-                        <!-- Resultados de búsqueda se insertarán aquí dinámicamente -->
+                        
                     </ul>
                 </div>
 
@@ -33,17 +32,18 @@
                     <a href="/feed" class="nav-icon active"><i class="fas fa-home"></i></a>
                     <a href="/videos" class="nav-icon"><i class="fas fa-tv"></i></a>
                     <a href="/amigos" class="nav-icon"><i class="fas fa-users"></i></a>
-                    
                 </div>
                 <div class="navbar-right">
-                    <!-- Botón para abrir el modal de notificaciones -->
+                    
                     <a href="#" class="nav-icon" data-bs-toggle="modal" data-bs-target="#notificationsModal">
                         <i class="fas fa-bell"></i>
                         <span class="badge bg-danger" id="notificationCount">3</span>
                     </a>
                     <a href="#" class="nav-icon" data-bs-toggle="modal" data-bs-target="#messageModal">
                         <i class="fas fa-envelope"></i></a>
-                    <a href="/Usuario" class="nav-icon"><i class="fas fa-user-circle"></i>
+                    <a href="/Usuario" class="nav-icon">
+                        <img src="{{ Auth::user()->foto_perfil ? asset('storage/public/' . Auth::user()->foto_perfil) : 'https://via.placeholder.com/100' }}"
+                                    class="rounded-circle me-2" style="width: 30px;height: 30px;margin-top: 0.1px;/* border-radius: 100px; */; object-fit: cover;">
                         {{ Auth::check() ? Auth::user()->nombre : 'nombre' }}</a>
                 </div>
             </div>
@@ -76,14 +76,6 @@
         </div>
 
         <div class="col-md-4 right-sidebar">
-            <h5>Sugerencias</h5>
-            <div class="card mb-3" style="width: 100%;height: 28%;">
-                <div class="card-body">
-                    <h6>Grupos</h6>
-                    <p>Ahora puedes encontrar y comunicarte con tu comunidad</p>
-                    <button class="btn btn-primary"> Encuntra tus grupos </button>
-                </div>
-            </div>
             <h5>Contactos</h5>
             <ul class="list-unstyled">
                 <li class="contact-item d-flex align-items-center mb-2">
@@ -120,7 +112,7 @@
                 </div>
                 <div class="modal-body">
                     <ul class="list-group" id="notificationList">
-                        <!-- Notificaciones cargadas dinámicamente -->
+                        
                     </ul>
                 </div>
             </div>

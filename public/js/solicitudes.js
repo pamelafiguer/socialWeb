@@ -11,7 +11,7 @@
         .then(data => {
             if (data.message) {
                 alert(data.message);
-                location.reload(); // Recarga la página para actualizar la lista de solicitudes
+                location.reload(); 
             } else {
                 alert('Ocurrió un error');
             }
@@ -31,7 +31,7 @@
         .then(data => {
             if (data.message) {
                 alert(data.message);
-                location.reload(); // Recarga la página para actualizar la lista de solicitudes
+                location.reload(); 
             } else {
                 alert('Ocurrió un error');
             }

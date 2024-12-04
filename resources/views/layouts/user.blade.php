@@ -27,9 +27,17 @@
                         
                     </div>
                     <div class="navbar-right">
-                        <a href="#" class="nav-icon"><i class="fas fa-bell"></i></a>
-                        <a href="#" class="nav-icon"><i class="fas fa-envelope"></i></a>
-                        <a href="/Usuario" class="nav-icon"><i class="fas fa-user-circle"></i> {{ Auth::check() ? Auth::user()->nombre : 'nombre' }}</a>
+                    
+                        <a href="#" class="nav-icon" data-bs-toggle="modal" data-bs-target="#notificationsModal">
+                            <i class="fas fa-bell"></i>
+                            <span class="badge bg-danger" id="notificationCount">3</span>
+                        </a>
+                        <a href="#" class="nav-icon" data-bs-toggle="modal" data-bs-target="#messageModal">
+                            <i class="fas fa-envelope"></i></a>
+                        <a href="/Usuario" class="nav-icon">
+                            <img src="{{ Auth::user()->foto_perfil ? asset('storage/public/' . Auth::user()->foto_perfil) : 'https://via.placeholder.com/100' }}"
+                                        class="rounded-circle me-2" style="width: 30px;height: 30px;margin-top: 0.1px;/* border-radius: 100px; */; object-fit: cover;">
+                            {{ Auth::check() ? Auth::user()->nombre : 'nombre' }}</a>
                     </div>
                 </div>
             </header>
@@ -42,6 +50,8 @@
 
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    @stack('scripts')
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
 </html>
