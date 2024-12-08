@@ -16,12 +16,7 @@ class redsocialController extends Controller
         return view('login');
     }
 
-    public function buscar(Request $request)
-    {
-        $query = $request->input('query');
-        $results = DB::select("CALL BuscarClientes(?)", [$query]);
-        return response()->json($results);
-    }
+
 
     public function Amigos()
     {
@@ -40,53 +35,58 @@ class redsocialController extends Controller
         return view('amigos', compact('friends'));
     }
 
+    public function obtenerAmigos()
+    {
+        
+        $usuarioId = Auth::id();
+
+        
+        $amigos = DB::select('CALL ObtenerAmigosporID(?)', [$usuarioId]);
+
+        
+        return response()->json($amigos);
+    }
+
     public function videos()
     {
         return view('videos');
     }
 
-    public function comentar(Request $request, $id)
+    public function comentar(Request $request, $id_publicacion)
     {
-        $request->validate([
-            'contenido' => 'required|string|max:500',
-        ]);
-
         $contenido = $request->input('contenido');
-        $userId = Auth::id();
-        $publicacionId = $id;
+        $idUsuario = $request->input('id_usuario');
 
         try {
-            // Llamar al procedimiento almacenado
-            DB::statement('CALL AgregarComentario(?, ?, ?, ?)', [
+            
+            DB::statement('CALL Agregar_Comentario(?, ?, ?, ?)', [
+                $id_publicacion,
+                $idUsuario,
                 $contenido,
-                $userId,
-                $publicacionId,
-                now(),
+                now()->toDateString() 
             ]);
-
-            return redirect()->back()->with('success', 'Comentario agregado con éxito.');
+            return back()->with('success', 'Comentario agregado correctamente.');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Ocurrió un error al agregar el comentario.');
+            return back()->with('error', 'Hubo un problema al agregar el comentario: ' . $e->getMessage());
         }
     }
 
-    public function reaccionar(Request $request, $id)
+    public function reaccionar(Request $request, $idPublicacion)
     {
-        $tipo = $request->input('tipo'); // "me gusta" o "me encanta"
-        $userId = Auth::id();
-        $publicacionId = $id;
+        $idUsuario = Auth::id();
+        $tipoReaccion = $request->input('tipo'); 
 
         try {
-            // Llamar al procedimiento almacenado
-            DB::statement('CALL obtener_reacciones(?, ?, ?)', [
-                $tipo,
-                $userId,
-                $publicacionId,
-            ]);
+            
+            DB::statement('CALL agregar_reacciones(?, ?, ?)', [$tipoReaccion, $idUsuario, $idPublicacion]);
 
-            return redirect()->back()->with('success', 'Reacción procesada con éxito.');
+            
+            $meGusta = DB::table('likes')->where('id_publicacion', $idPublicacion)->where('reaccion', 'me gusta')->count();
+            $meEncanta = DB::table('likes')->where('id_publicacion', $idPublicacion)->where('reaccion', 'me encanta')->count();
+
+            return back()->with('success', 'Comentario agregado correctamente.');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Ocurrió un error al procesar la reacción.');
+            return back()->with('error', 'Hubo un problema al agregar el comentario: ' . $e->getMessage());
         }
     }
 
@@ -96,7 +96,7 @@ class redsocialController extends Controller
             return redirect()->route('login')->withErrors('Debes iniciar sesión para publicar.');
         }
 
-        // Validar los datos del formulario
+        
         $request->validate([
             'content' => 'required|string|max:500',
             'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -205,54 +205,59 @@ class redsocialController extends Controller
     public function feed()
     {
         try {
-            // Ejemplo: Obtener el usuario autenticado
+            
             $usuario = Auth::user();
 
-            // Verificar si hay un usuario autenticado
+            
             if (!$usuario) {
                 return redirect()->route('login')->with('error', 'Usuario no autenticado.');
             }
 
-            // Obtener todas las publicaciones del usuario o generales
+            
             $publicaciones = DB::select('CALL obtener_publicaciones()');
+            foreach ($publicaciones as $publicacion) {
+                $reaccion = DB::table('likes')
+                    ->where('id_usuario', $usuario)
+                    ->where('id_publicacion', $publicacion->id_publicacion)
+                    ->value('reaccion'); 
+
+                $publicacion->reaccion_usuario = $reaccion;
+            }
 
             $comentarios = [];
-            $reacciones = [
-                'me_gusta' => [],
-                'me_encanta' => [],
-            ];
+            $reacciones = [];
 
             foreach ($publicaciones as $publicacion) {
                 $idPublicacion = $publicacion->id_publicacion;
 
-                // Obtener comentarios por publicación
+                
                 $comentarios[$idPublicacion] = DB::select('CALL obtener_comentarios(?)', [$idPublicacion]);
 
-                // Obtener reacciones de "me gusta" y "me encanta"
-                $reacciones['me_gusta'][$idPublicacion] = DB::select(
-                    'CALL obtener_reacciones(?, ?, ?)',
-                    ['me gusta', $usuario->id_usuario, $idPublicacion]
-                );
-
-                $reacciones['me_encanta'][$idPublicacion] = DB::select(
-                    'CALL obtener_reacciones(?, ?, ?)',
-                    ['me encanta', $usuario->id_usuario, $idPublicacion]
-                );
+                
+                $reacciones[$idPublicacion] = DB::select('CALL ObtenerReacciones(?)', [$idPublicacion]);
             }
 
-            /*dd([
-                'publicaciones' => $publicaciones,
-                'comentarios' => $comentarios,
-                'reacciones' => $reacciones,
-            ]);*/
-            // Pasar los datos a la vista Blade
+            
             return view('feed', [
                 'publicaciones' => $publicaciones,
                 'comentarios' => $comentarios,
-                'reacciones' => $reacciones,
+                'reacciones' => $reacciones, 
             ]);
         } catch (\Exception $e) {
             return redirect()->route('error')->with('error', 'Error al obtener datos de las publicaciones.');
+        }
+    }
+
+    public function obtenerReacciones($id_publicacion)
+    {
+        try {
+            
+            $reacciones = DB::select('CALL ObtenerReacciones(?)', [$id_publicacion]);
+
+            
+            return response()->json($reacciones);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'No se pudieron obtener las reacciones'], 500);
         }
     }
 
@@ -430,13 +435,13 @@ class redsocialController extends Controller
         $userId = Auth::id();
         $tab = $request->query('tab', 'publicaciones');
 
-        // Retrieve publications
+        
         $publicaciones = DB::select("CALL Listar_Publicaciones(?)", [$userId]);
 
-        // Convert publications to a collection
+        
         $publicaciones = collect($publicaciones);
 
-        // Retrieve friends
+        
         $amigos = DB::table('amigos')
             ->join('usuario', function ($join) use ($userId) {
                 $join->on('amigos.id_usuario1', '=', 'usuario.id_usuario')
@@ -447,14 +452,55 @@ class redsocialController extends Controller
             ->select('usuario.*')
             ->get();
 
-        // Retrieve photos
+        
         $fotos = DB::table('publicaciones')
             ->where('id_usuario', $userId)
             ->whereNotNull('imagen')
             ->select('imagen')
             ->get();
 
-        // Return the view with all necessary data
+        
         return view('Usuario', compact('publicaciones', 'amigos', 'fotos'));
+    }
+
+    public function buscarUsuarioPorNombre(Request $request)
+    {
+        
+        $nombre = $request->query('query'); 
+
+        if (!$nombre || strlen($nombre) < 3) {
+            return response()->json(['error' => 'El término de búsqueda debe tener al menos 3 caracteres'], 400);
+        }
+
+        try {
+            $usuario = DB::select('CALL BuscarClientes(?)', [$nombre]);
+
+            
+            if (empty($usuario)) {
+                return response()->json(['error' => 'Usuario no encontrado'], 404);
+            }
+
+            
+            return response()->json($usuario);
+        } catch (\Exception $e) {
+            
+            return response()->json(['error' => 'Error al realizar la búsqueda', 'message' => $e->getMessage()], 500);
+        }
+    }
+
+    public function PerfilUsuario($id_usuario)
+    {
+        
+        $usuario = DB::select('CALL ObtenerPerfilUsuario(?)', [$id_usuario]);
+
+        $publicaciones = DB::select('CALL Listar_Publicaciones(?)', [$id_usuario]);
+
+        $amigos = DB::select('CALL ObtenerAmigosporID(?)', [$id_usuario]);
+        
+        $fotos = DB::select('CALL ObtenerFotosporID(?)', [$id_usuario]);
+
+        $usuario = (object) $usuario[0];
+
+        return view('perfil_usuario', compact('usuario', 'publicaciones', 'amigos', 'fotos'));
     }
 }

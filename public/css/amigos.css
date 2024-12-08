@@ -1,5 +1,5 @@
 
-/* Estilo general para el cuerpo */
+
 body {
     background-color: #5d5d5d;
     font-family: Arial, sans-serif;
@@ -10,7 +10,7 @@ body {
     list-style: none;
 }
 
-/* Estilos para la barra de navegación */
+
 .navbar {
     background-color: #0e0909;
     padding: 8px 15px;
@@ -42,7 +42,7 @@ body {
     color: #f71919;
 }
 
-/* Estilos para el sidebar */
+
 .sidebar {
     background-color: #252424d1;
     padding: 20px;
@@ -72,7 +72,7 @@ body {
     color: #0a0a0a;
 }
 
-/* Estilos para el main-feed */
+
 .main-feed {
     background-color: #d5d5d5;
     padding: 30px;
@@ -86,15 +86,15 @@ body {
 }
 
 .main-feed::-webkit-scrollbar {
-    display: none; /* Oculta la barra de desplazamiento */
+    display: none; 
 }
 
-/* Para Firefox */
+
 .main-feed {
-    scrollbar-width: none; /* Oculta la barra de desplazamiento */
+    scrollbar-width: none; 
 }
 
-/* Estilos para el right-sidebar */
+
 .right-sidebar {
     background-color: #252424d1;
     padding: 20px;
@@ -196,9 +196,10 @@ img, svg {
 
 .contenido_amigos {
     position: relative;
-    padding: 15px;
-    width: 22%;
+    padding: 10px;
+    width: 20%;
     align-content: center;
+    margin: 20px;
 
 }
 
@@ -223,22 +224,23 @@ button.enviar-solicitud {
     transition: background-color 0.3s ease, transform 0.2s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-top: 5%;
+    margin-bottom: 20px;
 }
 
 button.enviar-solicitud:hover {
-    background-color: #45a049; /* Color más oscuro al pasar el mouse */
-    transform: scale(1.05); /* Agrandar ligeramente al pasar el mouse */
+    background-color: #45a049; 
+    transform: scale(1.05); 
 }
 
 button.enviar-solicitud:active {
-    background-color: #3e8e41; /* Color más oscuro al hacer clic */
-    transform: scale(0.95); /* Reducir ligeramente al hacer clic */
+    background-color: #3e8e41; 
+    transform: scale(0.95); 
 }
 
 button.enviar-solicitud:disabled {
-    background-color: #ccc; /* Color gris para botón deshabilitado */
-    cursor: not-allowed; /* Indicador de que está deshabilitado */
-    box-shadow: none; /* Sin sombra */
+    background-color: #ccc; 
+    cursor: not-allowed; 
+    box-shadow: none; 
 }
 
 button.aceptar-solicitud {
@@ -256,31 +258,31 @@ button.aceptar-solicitud {
 }
 
 button.aceptar-solicitud:hover {
-    transform: translateY(-2px); /* Se eleva ligeramente */
-    box-shadow: 0 6px 14px rgba(0, 123, 255, 0.4); /* Sombra más intensa */
+    transform: translateY(-2px); 
+    box-shadow: 0 6px 14px rgba(0, 123, 255, 0.4); 
 }
 
 button.aceptar-solicitud:active {
-    transform: translateY(1px); /* Retrocede un poco al hacer clic */
-    box-shadow: 0 2px 6px rgba(0, 123, 255, 0.2); /* Sombra más sutil */
+    transform: translateY(1px); 
+    box-shadow: 0 2px 6px rgba(0, 123, 255, 0.2); 
 }
 
 button.aceptar-solicitud:disabled {
-    background: #d1d1d1; /* Color gris para estado deshabilitado */
-    color: #666; /* Texto gris */
-    cursor: not-allowed; /* Indicador de deshabilitado */
-    box-shadow: none; /* Sin sombra */
+    background: #d1d1d1; 
+    color: #666; 
+    cursor: not-allowed; 
+    box-shadow: none; 
 }
 
 
 
-/* Título de sección */
+
 h5 {
     font-weight: bold;
     color: #272626;
 }
 
-/* Enlace "Ver todas" */
+
 a.text-decoration-none {
     font-size: 0.9rem;
     color: #43474d;
@@ -291,7 +293,7 @@ a.text-decoration-none:hover {
     color: #000000;
 }
 
-/* Estilos para la sección de historias */
+
 .story-card {
     width: 80px;
     text-align: center;
@@ -312,7 +314,7 @@ a.text-decoration-none:hover {
     color: #4b4b4b;
 }
 
-/* Estilos para el cuadro de publicación */
+
 .card {
     border: none;
     border-radius: 10px;
@@ -335,7 +337,7 @@ a.text-decoration-none:hover {
     box-shadow: 0px 0px 5px rgba(24, 119, 242, 0.3);
 }
 
-/* Botones de Foto y Video */
+
 .btn-light {
     background-color: #f5f6f7;
     color: #333;
@@ -352,7 +354,7 @@ a.text-decoration-none:hover {
     color: #333;
 }
 
-/* Estilos de los posts */
+
 .card-body h6 {
     font-weight: bold;
     color: #333;
@@ -367,7 +369,7 @@ a.text-decoration-none:hover {
     margin-top: 10px;
 }
 
-/* Avatar en post */
+
 .card-body .rounded-circle {
     border: 2px solid #ddd;
     padding: 2px;
@@ -438,6 +440,39 @@ a.text-decoration-none:hover {
     align-content: center;
 
 }
+#searchResults {
+    position: absolute;
+    background-color: rgb(78, 78, 78);
+    width: 20%;
+    border: 1px solid #dddddd31;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 9999;
+    
+
+}
+
+.SearchResults {
+    display: block;
+    position: absolute;
+    width: 20%;
+    border: 1px solid rgb(221 221 221 / 12%);
+    max-height: 200px;
+    overflow-y: auto;
+    margin-left: 82px;
+    margin-top: 108px;
+}
+
+.search-result {
+    padding: 5px;
+    cursor: pointer;
+}
+
+#Search-result:hover {
+    background-color: #f7f6f6;
+    color: rgb(29, 29, 29);
+}
+
 
 
 

@@ -483,3 +483,90 @@ a.text-decoration-none:hover {
 .nav-item-2 {
     content: normal;
 }
+#searchResults {
+    position: absolute;
+    background-color: rgb(78, 78, 78);
+    width: 20%;
+    border: 1px solid #dddddd31;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 9999;
+    
+    /* Asegurarse de que se superponga sobre otros elementos */
+}
+
+.SearchResults {
+    display: block;
+    position: absolute;
+    width: 20%;
+    border: 1px solid rgb(221 221 221 / 12%);
+    max-height: 200px;
+    overflow-y: auto;
+    margin-left: 82px;
+    margin-top: 108px;
+}
+
+.search-result {
+    padding: 5px;
+    cursor: pointer;
+}
+
+#Search-result:hover {
+    background-color: #f7f6f6;
+    color: rgb(29, 29, 29);
+}
+
+/* Contenedor principal de la sección */
+.info-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+}
+
+/* Título */
+.titulo {
+    font-size: 24px;
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Estilo para cada ítem de información */
+.info-item {
+    margin-bottom: 15px;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    color: #555;
+}
+
+/* Etiquetas */
+.label {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Valores */
+.value {
+    color: #777;
+    text-align: right;
+    word-wrap: break-word;
+    max-width: 70%;
+}
+
+/* Resaltar la etiqueta y el valor con un cambio de color suave al pasar el ratón */
+.info-item:hover .label, 
+.info-item:hover .value {
+    color: #ff3300;
+}
+
+/* Bordes suaves entre cada elemento */
+.info-item:not(:last-child) {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}

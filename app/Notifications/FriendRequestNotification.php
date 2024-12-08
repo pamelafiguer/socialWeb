@@ -19,7 +19,7 @@ class FriendRequestNotification extends Notification
 
     public function via($notifiable)
     {
-        return ['database', 'broadcast'];  // Se enviará a la base de datos y al cliente en tiempo real
+        return ['database', 'broadcast'];  
     }
 
     public function toDatabase($notifiable)

@@ -10,7 +10,7 @@
         @foreach ($users as $user)
             <div class="contenido_amigos">
                 <img src="{{ $user->foto_perfil ? asset('storage/public/' . $user->foto_perfil) : 'https://via.placeholder.com/100' }}"
-                    alt="{{ $user->nombre }}" class="foto_perfil_amigos" style="width: 150px; height: 150px;">
+                    alt="{{ $user->nombre }}" class="foto_perfil_amigos" style="width: 150px; height: 150px; object-fit: cover">
                 <div class="nombre_solicitud">
                     <h6 class="mb-55">{{ $user->nombre }}</h6>
                 </div>
@@ -36,7 +36,7 @@
                 .then(data => {
                     alert(data.message);
                     if (data.message === 'Solicitud enviada exitosamente') {
-                        // Opcional: recargar la página o actualizar la UI
+                        
                         window.location.reload();
                     }
                 })

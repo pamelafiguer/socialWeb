@@ -1,12 +1,12 @@
 @extends('layouts.user')
 
-@section('title', 'Perfil Usuario')
+@section('title', 'Usuario')
 
 @section('contenido-user')
     <div class="container">
 
         <div id="toastContainer" class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999;">
-            <!-- Verificar si hay mensaje de éxito -->
+
             @if (session('success'))
                 <script>
                     window.onload = function() {
@@ -15,7 +15,7 @@
                 </script>
             @endif
 
-            <!-- Verificar si hay errores -->
+
             @if ($errors->any())
                 <script>
                     window.onload = function() {
@@ -25,7 +25,7 @@
             @endif
         </div>
 
-        <!-- Encabezado de la barra superior -->
+
         <header class="profile-header">
             <div class="cover-photo position-relative">
                 @if (Auth::user()->foto_portada)
@@ -72,12 +72,14 @@
                         <a class="nav-link {{ request('tab') === 'fotos' || !request('tab') ? 'active' : '' }}"
                             href="{{ route('Usuario', ['tab' => 'fotos']) }}">Fotos</a>
                     </li>
-                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#historiaModal" style="margin-left: 330px;height: 30px;margin-top: 10px;">
+                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#historiaModal"
+                        style="margin-left: 330px;height: 30px;margin-top: 10px;">
                         <i class="fas fa-plus-circle"></i> Agregar a historia
                     </button>
-                
-                
-                    <button class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#editarPerfilModal" style="margin-right: -360px;margin-left: 20px;height: 30px;margin-top: 10px;">
+
+
+                    <button class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#editarPerfilModal"
+                        style="margin-right: -360px;margin-left: 20px;height: 30px;margin-top: 10px;">
                         <i class="fas fa-edit"></i> Editar perfil
                     </button>
                 </ul>
@@ -115,16 +117,29 @@
                         @endif
                     </div>
                 @elseif (request('tab') === 'informacion')
-                    <div id="informacion">
-                        <h3>Información</h3>
-                        <p>Nombre: {{ Auth::user()->nombre }}</p>
-                        <p>Apellidos: {{ Auth::user()->apellidos }}</p>
-                        <p>Correo: {{ Auth::user()->email }}</p>
-                        <p>Fecha de nacimiento:
-                            {{ \Carbon\Carbon::parse(Auth::user()->fecha_nacimiento)->translatedFormat('d \d\e F \d\e\l Y') }}
-                        </p>
-                        <p>Genero: {{ Auth::user()->Genero }}</p>
-
+                    <div id="informacion" class="info-container">
+                        <h3 class="titulo">Información del Usuario</h3>
+                        <div class="info-item">
+                            <span class="label">Nombre:</span>
+                            <span class="value">{{ Auth::user()->nombre }}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Apellidos:</span>
+                            <span class="value">{{ Auth::user()->apellidos }}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Correo:</span>
+                            <span class="value">{{ Auth::user()->email }}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Fecha de nacimiento:</span>
+                            <span
+                                class="value">{{ \Carbon\Carbon::parse(Auth::user()->fecha_nacimiento)->translatedFormat('d \d\e F \d\e\l Y') }}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Género:</span>
+                            <span class="value">{{ Auth::user()->Genero }}</span>
+                        </div>
                     </div>
                 @elseif (request('tab') === 'amigos')
                     <div id="amigos">
@@ -157,13 +172,13 @@
             </div>
         </header>
 
-        <!-- Contenido principal -->
+
         <div class="row mt-4">
             @yield('contenido-perfil')
         </div>
     </div>
 
-    <!-- Modal Foto de Perfil -->
+
     <div class="modal fade" id="perfilModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -177,8 +192,8 @@
                         @csrf
                         <div class="mb-3">
                             <label for="foto_perfil" class="form-label">Seleccionar foto</label>
-                            <input type="file" class="form-control" id="foto_perfil" name="foto_perfil" accept="image/*"
-                                required>
+                            <input type="file" class="form-control" id="foto_perfil" name="foto_perfil"
+                                accept="image/*" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Guardar</button>
                     </form>
@@ -187,7 +202,7 @@
         </div>
     </div>
 
-    <!-- Modal Foto de Portada -->
+
     <div class="modal fade" id="portadaModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -211,7 +226,7 @@
         </div>
     </div>
 
-    <!-- Modal Editar Perfil -->
+
     <div class="modal fade" id="editarPerfilModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -262,20 +277,19 @@
 
 
 
-    <!-- Aquí va todo el código JavaScript al final del archivo Blade -->
+    
     <script>
         function showToast(type, message) {
             const toastContainer = document.getElementById('toastContainer');
             const toastElement = document.createElement('div');
-            toastElement.classList.add('toast');
-            toastElement.classList.add(`bg-${type}`);
-            toastElement.classList.add('text-white');
-            toastElement.classList.add('m-2');
-            toastElement.classList.add('align-items-center');
+
+            
+            toastElement.classList.add('toast', `bg-${type}`, 'text-white', 'm-2', 'align-items-center');
             toastElement.setAttribute('role', 'alert');
             toastElement.setAttribute('aria-live', 'assertive');
             toastElement.setAttribute('aria-atomic', 'true');
 
+            
             toastElement.innerHTML = `
                 <div class="d-flex">
                     <div class="toast-body">
@@ -285,17 +299,21 @@
                 </div>
             `;
 
+            
             toastContainer.appendChild(toastElement);
+
+            
             const toast = new bootstrap.Toast(toastElement);
             toast.show();
 
+            
             setTimeout(() => {
                 toastElement.remove();
-            }, 5000); // Elimina el toast después de 5 segundos
+            }, 5000);
         }
     </script>
 
-    <!-- Bootstrap JS -->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 @endsection

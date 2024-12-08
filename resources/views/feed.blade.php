@@ -3,6 +3,13 @@
 @section('title', 'Home')
 
 @section('content')
+    @if (session('success'))
+        <div class="alert alert-success mt-2">{{ session('success') }}</div>
+    @endif
+
+    @if (session('error'))
+        <div class="alert alert-danger mt-2">{{ session('error') }}</div>
+    @endif
 
     <div class="d-flex justify-content-between mb-3 align-items-center">
         <h5><i class="fas fa-book-open me-2"></i>Historias</h5>
@@ -38,7 +45,8 @@
 
     <div id="feed">
         @foreach ($publicaciones as $publicacion)
-            <div class="card mb-3">
+        <div class="card mb-3">
+            
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2">
                         <img src="{{ $publicacion->foto_perfil ? asset('storage/public/' . $publicacion->foto_perfil) : 'https://via.placeholder.com/100' }}"
@@ -55,43 +63,66 @@
 
                     <!-- Reacciones -->
 
+
                     <div class="d-flex justify-content-between">
+                        <!-- Botón "Me gusta" -->
                         <form action="{{ route('reaccionar', $publicacion->id_publicacion) }}" method="POST"
-                            class="d-inline">
+                            class="d-inline reaccion-form">
                             @csrf
                             <input type="hidden" name="tipo" value="me gusta">
-                            <button type="submit" class="btn btn-link text-decoration-none">
+                            <button type="submit"
+                                class="btn btn-link text-decoration-none btn-reaccion {{ $publicacion->reaccion_usuario === 'me gusta' ? 'active' : '' }}"
+                                data-reaccion="me gusta" data-id-publicacion="{{ $publicacion->id_publicacion }}">
                                 <i class="fas fa-thumbs-up"></i> Me gusta
-                                ({{ collect($reacciones)->where('id_publicacion', $publicacion->id_publicacion)->where('reaccion', 'me gusta')->count() }})
                             </button>
                         </form>
+
+                        <!-- Botón "Me encanta" -->
                         <form action="{{ route('reaccionar', $publicacion->id_publicacion) }}" method="POST"
-                            class="d-inline">
+                            class="d-inline reaccion-form">
                             @csrf
                             <input type="hidden" name="tipo" value="me encanta">
-                            <button type="submit" class="btn btn-link text-decoration-none">
+                            <button type="submit"
+                                class="btn btn-link text-decoration-none btn-reaccion {{ $publicacion->reaccion_usuario === 'me encanta' ? 'active' : '' }}"
+                                data-reaccion="me encanta" data-id-publicacion="{{ $publicacion->id_publicacion }}">
                                 <i class="fas fa-heart"></i> Me encanta
-                                ({{ collect($reacciones)->where('id_publicacion', $publicacion->id_publicacion)->where('reaccion', 'me encanta')->count() }})
                             </button>
                         </form>
                         <button class="btn btn-link text-decoration-none" data-bs-toggle="collapse"
                             data-bs-target="#comentarios-{{ $publicacion->id_publicacion }}">
                             <i class="fas fa-comment"></i> Comentar
-                            ({{ collect($comentarios)->where('id_publicacion', $publicacion->id_publicacion)->count() }})
+
                         </button>
                     </div>
+                    <div class="reacciones">
+                        <a href="#" class="text-decoration-none" id="ver-reacciones"
+                            data-id-publicacion="{{ $publicacion->id_publicacion }}">
+                            {{ $publicacion->me_gusta + $publicacion->me_encanta }} Reacciones
+                        </a>
+                    </div>
+
 
 
                     <!-- Comentarios -->
                     <div class="collapse mt-2" id="comentarios-{{ $publicacion->id_publicacion }}">
-                        <form action="{{ route('comentar', $publicacion->id_publicacion) }}" method="POST">
+                        <form action="{{ route('comentar', ['id_publicacion' => $publicacion->id_publicacion]) }}"
+                            method="POST">
                             @csrf
+                            <!-- Input oculto para el id_publicacion -->
+                            <input type="hidden" name="id_publicacion" value="{{ $publicacion->id_publicacion }}">
+                            <!-- Input oculto para el id_usuario -->
+                            <input type="hidden" name="id_usuario" value="{{ auth()->id() }}">
+
                             <div class="d-flex align-items-center mb-2">
+                                <!-- Input para el contenido del comentario -->
                                 <input type="text" name="contenido" class="form-control"
                                     placeholder="Escribe un comentario..." required>
                                 <button type="submit" class="btn btn-primary ms-2">Enviar</button>
                             </div>
                         </form>
+
+
+
                         <!-- Aquí insertar los comentarios del procedimiento -->
                         @foreach ($comentarios[$publicacion->id_publicacion] ?? [] as $comentario)
                             <div class="d-flex align-items-center mb-2">
@@ -99,13 +130,15 @@
                                     class="rounded-circle me-2" style="width: 30px; height: 30px;">
                                 <div>
                                     <h6 class="mb-0">{{ $comentario->usuario_nombre ?? 'Usuario desconocido' }}</h6>
-                                    <p class="mb-0">{{ $comentario->contenido}}</p>
+                                    <p class="mb-0">{{ $comentario->contenido }}</p>
                                 </div>
                             </div>
                         @endforeach
                     </div>
+
                 </div>
-            </div>
+            
+        </div>
         @endforeach
     </div>
 
@@ -119,7 +152,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('Nuevofeed') }}" id="postForm" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('Nuevofeed') }}" id="postForm" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <textarea class="form-control" id="postContent" name="content" rows="3" placeholder="Escribe algo..."></textarea>
@@ -135,5 +169,74 @@
             </div>
         </div>
     </div>
+
+    <div id="modal-reacciones" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Usuarios que reaccionaron</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul id="usuarios-reacciones">
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        jQuery(document).ready(function() {
+            
+            $(document).on('click', '#ver-reacciones', function(e) {
+                e.preventDefault();
+
+                
+                const idPublicacion = $(this).data('id-publicacion');
+
+                
+                $.ajax({
+                    url: '/reacciones/' +
+                        idPublicacion, 
+                    method: 'GET',
+                    success: function(reacciones) {
+                        
+                        let html = '';
+                        reacciones.forEach(function(usuario) {
+                            html += `
+                        <div class="d-flex align-items-center mb-2">
+                            <img src="${usuario.foto_perfil ? '/storage/public/' + usuario.foto_perfil : 'https://via.placeholder.com/100'}" 
+                                alt="${usuario.usuario_nombre}" class="rounded-circle me-2" style="width: 40px; height: 40px;margin-top: 10px;object-fit: cover;"">
+                            <h6 class="mb-0">${usuario.usuario_nombre} reacciono con ${usuario.reaccion}</h6>
+                        </div>
+                    `;
+                        });
+
+
+                        
+                        $('#usuarios-reacciones').html(html);
+
+                        
+                        $('#modal-reacciones').modal('show');
+                    },
+                    error: function() {
+                        alert('No se pudieron obtener las reacciones.');
+                    }
+                });
+            });
+            $(document).on('click', '.close', function() {
+                $('#modal-reacciones').modal('hide');
+            });
+
+
+
+        });
+    </script>
+
 
 @endsection
