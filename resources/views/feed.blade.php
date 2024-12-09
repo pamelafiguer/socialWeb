@@ -18,7 +18,7 @@
 
     <div class="d-flex overflow-auto mb-3">
         <div class="story-card me-2 text-center">
-            <img src="/css/imgen/Selfie.jpeg" alt="Avatar" class="rounded-circle" style="width: 60px; height: 60px;">
+            <img src="/css/imgen/imagensocial.jpeg" alt="Avatar" class="rounded-circle" style="width: 60px; height: 60px;">
             <p class="small mt-2">Añade tu historia</p>
         </div>
         <div class="story-card me-2 text-center">
@@ -30,7 +30,7 @@
     <div class="card mb-3">
         <div class="card-body">
             <div class="d-flex align-items-center">
-                <img src="/css/imgen/Selfie.jpeg" alt="Usuario" class="rounded-circle me-2"
+                <img src="/css/imgen/ciudadAtardecer.jpeg" alt="Usuario" class="rounded-circle me-2"
                     style="width: 40px; height: 40px;">
                 <input type="text" class="form-control" data-bs-toggle="modal" data-bs-target="#publicacionesModal"
                     placeholder="¿Qué estás pensando?" style="border-radius: 20px;">

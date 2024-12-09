@@ -8,7 +8,7 @@
     <br>
 
     <div class="contenedor_amigos">
-        @if (!empty($user))
+        @if (!empty($requests))
             @foreach ($requests as $user)
                 <div class="contenido_amigos">
                     <img src="{{ $user->foto_perfil ? asset('storage/public/' . $user->foto_perfil) : 'https://via.placeholder.com/100' }}"

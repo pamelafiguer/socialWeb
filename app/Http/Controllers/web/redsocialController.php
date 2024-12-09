@@ -204,7 +204,6 @@ class redsocialController extends Controller
 
     public function feed()
     {
-        try {
             
             $usuario = Auth::user();
 
@@ -243,9 +242,12 @@ class redsocialController extends Controller
                 'comentarios' => $comentarios,
                 'reacciones' => $reacciones, 
             ]);
-        } catch (\Exception $e) {
-            return redirect()->route('error')->with('error', 'Error al obtener datos de las publicaciones.');
-        }
+            dd([
+                'publicaciones' => $publicaciones,
+                'comentarios' => $comentarios,
+                'reacciones' => $reacciones,
+            ]);
+        
     }
 
     public function obtenerReacciones($id_publicacion)

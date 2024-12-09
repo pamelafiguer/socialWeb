@@ -8,7 +8,7 @@
     <h2>Mis Amigos</h2>
     <br>
     <div class="contenedor_amigos">
-        @if (!empty($friend))
+        @if (!empty($friends))
 
             @foreach ($friends as $friend)
                 <div class="contenido_amigos">

@@ -17,7 +17,7 @@
                 <h1>LOGIN</h1>
                 <form action="{{ route('LoginForm') }}" method="POST">
                     @csrf
-                    <p>How do I get started lorem ipsum dolor at?</p>
+                    <p>Estas listo para experimentar el poder de Venia?</p>
 
                     <div class="input-group">
                         <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 24 24">
@@ -43,21 +43,23 @@
                         <i class="fab fa-google"></i>
                         Ingresa con Google
                     </a>
+                    
                     <a href="{{ route('auth.social', 'facebook') }}" id="facebook-login" class="social-btn facebook">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
                             alt="Facebook Logo">
                         Ingresa con Facebook
                     </a>
 
-                    <a href="/Register">Si no tienes una cuenta Registrate aqui!</a>
+                    <a href="/Register" style="color: blue;">Si no tienes una cuenta, ¡Regístrate aquí!</a>
+
                 </form>
         </div>
         @endif
 
         <div class="info-container">
             <div class="welcome-message">
-                <p>Very good works are waiting for you Login Now!!!</p>
-                <img src="/css/imgen/Selfie.jpeg" alt="Welcome Image">
+                <p>This is Veniaa!!</p>
+                <img src="/css/imgen/venom_logo.jpg" alt="Welcome Image">
             </div>
         </div>
     </div>

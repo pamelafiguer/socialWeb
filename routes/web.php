@@ -5,6 +5,12 @@ use App\Http\Controllers\web\redsocialController;
 use App\Http\Controllers\Auth\SocialAuthController;
 use App\Http\Middleware\CustomAuthMiddleware;
 
+
+Route::get('/error', function () {
+    return view('error'); // Asegúrate de tener una vista llamada 'error.blade.php'
+})->name('error');
+
+
 Route::controller(redsocialController::class)->group(function () {
     Route::get('/', 'Login')->name('login');
     Route::post('/', 'LoginForm')->name('LoginForm');

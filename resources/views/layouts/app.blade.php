@@ -59,16 +59,12 @@
                 <li class="nav-item"><a href="/Usuario" class="nav-link"><i class="fas fa-user"></i>
                         {{ session('usuario_nombre', 'Usuario') }}</a></li>
                 <li class="nav-item"><a href="/videos" class="nav-link"><i class="fas fa-video"></i> Videos</a></li>
-                <li class="nav-item"><a href="/eventos" class="nav-link"><i class="fas fa-calendar-alt"></i> Eventos</a>
-                </li>
                 <li class="nav-item"><a href="/guardado" class="nav-link"><i class="fas fa-bookmark"></i> Guardado</a>
                 </li>
                 <li class="nav-item"><a href="/favoritos" class="nav-link"><i class="fas fa-star"></i> Favoritos</a>
                 </li>
                 <li class="nav-item"><a href="/recuerdos" class="nav-link"><i class="fas fa-clock"></i> Recuerdos</a>
                 </li>
-                <li class="nav-item"><a href="/ayuda-y-soporte" class="nav-link"><i class="fas fa-question-circle"></i>
-                        Ayuda y Soporte</a></li>
                 <li class="nav-item"><a href="/configuracion-y-privacidad" class="nav-link"><i class="fas fa-cog"></i>
                         Configuración y Privacidad</a></li>
                 <li class="nav-item" id="ConfirmarCerrarSesion"><a href="{{ route('logout') }}" class="nav-link">Cerrar
