@@ -52,3 +52,16 @@ Route::middleware([CustomAuthMiddleware::class])->group(function () {
 Route::get('auth/{provider}', [SocialAuthController::class, 'redirectToProvider'])->name('auth.social');
 Route::get('auth/{provider}/callback', [SocialAuthController::class, 'handleProviderCallback'])->name('auth.social.callback');
 Route::get('logout', [SocialAuthController::class, 'logout'])->name('social.logout');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/chat', [redsocialController::class, 'chat'])->name('chat.index');
+    Route::get('/chat/{amigoId}/mensajes', [redsocialController::class, 'obtenerConversacion'])->name('chat.obtenerMensajes');
+    Route::post('/chat/{amigoId}/leidos', [redsocialController::class, 'marcarComoLeidos'])->name('chat.marcarLeidos');
+    Route::post('/chat/send/{id}', [redsocialController::class, 'sendMessage'])->name('chat.send');
+    Route::post('/chat/enviar-mensaje/{idAmigo}', [redsocialController::class, 'enviarMensaje'])->name('chat.enviar');
+    Route::get('/chat/obtener-nuevos-mensajes/{idAmigo}', [redsocialController::class, 'obtenerNuevosMensajes'])->name('chat.obtener-nuevos');
+    Route::get('/chat/{idAmigo}', [redsocialController::class, 'chat'])->name('chat.index');
+
+});
+
+

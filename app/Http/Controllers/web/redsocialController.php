@@ -8,9 +8,99 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Mensaje;  
 
 class redsocialController extends Controller
 {
+    public function chat($idAmigo)
+    {
+        $userId = Auth::id();
+    
+        // Obtener la información del amigo
+        $amigo = DB::table('usuario')->where('id_usuario', $idAmigo)->first();
+    
+        if (!$amigo) {
+            return redirect()->back()->with('error', 'Usuario no encontrado.');
+        }
+    
+        // Obtener mensajes entre los dos usuarios
+        $mensajes = DB::select('CALL sp_Mensaje_VerConversacion(?, ?)', [$userId, $idAmigo]);
+    
+        return view('chat', compact('amigo', 'mensajes'));
+    }
+    
+
+public function enviarMensaje(Request $request, $idAmigo)
+{
+    $request->validate([
+        'contenido' => 'required|string|max:1000',
+    ]);
+
+    $userId = Auth::id();
+    $contenido = $request->input('contenido');
+
+    try {
+        DB::statement('CALL sp_Mensaje_Enviar(?, ?, ?)', [$userId, $idAmigo, $contenido]);
+        return response()->json([
+            'message' => 'Mensaje enviado exitosamente.',
+            'success' => true
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'error' => 'Error al enviar el mensaje: ' . $e->getMessage(),
+            'success' => false
+        ], 500);
+    }
+}
+
+public function obtenerNuevosMensajes(Request $request, $idAmigo)
+{
+    $userId = Auth::id();
+    $ultimoMensajeId = $request->input('ultimo_mensaje_id', 0);
+
+    try {
+        $nuevosMensajes = DB::select('CALL sp_Mensaje_MarcarComoLeidos(?, ?, ?)', [$userId, $idAmigo, $ultimoMensajeId]);
+        
+        return response()->json([
+            'mensajes' => $nuevosMensajes,
+            'success' => true
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'error' => 'Error al obtener mensajes: ' . $e->getMessage(),
+            'success' => false
+        ], 500);
+    }
+}
+
+public function actualizarMensajes(Request $request, $idAmigo)
+{
+    $request->validate([
+        'last_id' => 'nullable|integer', // ID del último mensaje recibido
+    ]);
+
+    $userId = Auth::id();
+    $lastId = $request->input('last_id') ?? 0;
+
+    try {
+        $mensajes = DB::select('CALL sp_Mensaje_MarcarComoLeidos(?, ?, ?)', [$userId, $idAmigo, $lastId]);
+        return response()->json($mensajes);
+    } catch (\Exception $e) {
+        return response()->json(['error' => 'Error al actualizar mensajes: ' . $e->getMessage()], 500);
+    }
+}
+
+public function conversacionesRecientes()
+{
+    $userId = Auth::id();
+
+    try {
+        $conversaciones = DB::select('CALL sp_Amigos_ConMensajes(?)', [$userId]);
+        return response()->json($conversaciones);
+    } catch (\Exception $e) {
+        return response()->json(['error' => 'Error al obtener conversaciones recientes: ' . $e->getMessage()], 500);
+    }
+}
     public function Login()
     {
         return view('login');
