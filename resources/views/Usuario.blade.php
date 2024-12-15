@@ -145,9 +145,18 @@
                     <div id="amigos">
                         <h3>Amigos</h3>
                         @if ($amigos->count() > 0)
+                        <div class="contenedor-amigos" style="display: flex;margin: 2.5%;position: relative;display: flex;width: 100%;height: 20%;flex-direction: row;flex-wrap: wrap;">
                             @foreach ($amigos as $amigo)
+                        
+                                <div class="contenido-amigos" style="position: relative;padding: 10px;width: 20%;align-content: center;margin: 20px;">
+                                <img src="{{ $amigo->foto_perfil ? asset('storage/public/' . $amigo->foto_perfil) : 'https://via.placeholder.com/100' }}"
+                                class="foto_perfil_amigos"
+                                style="width: 150px; height: 150px; object-fit: cover">
                                 <p>{{ $amigo->nombre }} {{ $amigo->apellidos }}</p>
+                            </div>
+                            
                             @endforeach
+                        </div>
                         @else
                             <p>No tienes amigos agregados.</p>
                         @endif

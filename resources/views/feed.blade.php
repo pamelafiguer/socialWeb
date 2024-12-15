@@ -233,8 +233,6 @@
                 $('#modal-reacciones').modal('hide');
             });
 
-
-
         });
     </script>
 

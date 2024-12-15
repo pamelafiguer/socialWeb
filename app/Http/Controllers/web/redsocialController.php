@@ -82,6 +82,7 @@ class redsocialController extends Controller
 
             
             $meGusta = DB::table('likes')->where('id_publicacion', $idPublicacion)->where('reaccion', 'me gusta')->count();
+            
             $meEncanta = DB::table('likes')->where('id_publicacion', $idPublicacion)->where('reaccion', 'me encanta')->count();
 
             return back()->with('success', 'Comentario agregado correctamente.');
@@ -242,11 +243,7 @@ class redsocialController extends Controller
                 'comentarios' => $comentarios,
                 'reacciones' => $reacciones, 
             ]);
-            dd([
-                'publicaciones' => $publicaciones,
-                'comentarios' => $comentarios,
-                'reacciones' => $reacciones,
-            ]);
+            
         
     }
 
