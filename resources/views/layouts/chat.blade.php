@@ -78,7 +78,7 @@
         </div>
 
         <div class="col-md-6 main-feed">
-            @yield('content')
+            @yield('chat')
         </div>
 
 

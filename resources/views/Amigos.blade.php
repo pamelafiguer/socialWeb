@@ -4,7 +4,6 @@
 
 @section('contenido')
 
-
     <h2>Mis Amigos</h2>
     <br>
     <div class="contenedor_amigos">

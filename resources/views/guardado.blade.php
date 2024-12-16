@@ -6,7 +6,7 @@
     
     <div>
         <div>
-            <h2> Disponible, PROXIMAMENTE!!! </h2>
+            <h2> Disponible, PROXIMAMENTE!!!</h2>
         </div>
     </div>
 @endsection
